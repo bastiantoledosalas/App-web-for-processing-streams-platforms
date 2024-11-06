@@ -1,0 +1,13 @@
+Installation instructions for libcppsim
+=======================================
+
+This library has been tested under Linux (ubuntu 10.04), but should
+probably work fine on other Unix systems.
+
+To compile the library just issue the standard:
+
+./configure
+make
+
+Note that currently the final step "make install" does NOT work. 
+

@@ -1,0 +1,13 @@
+This archive contains version 0.2.5 of the cppsim library
+(last updated on 2013/06/20)
+
+This is cppsim, a process oriented simulation library for the C++
+programming language. cppsim provides the user with a set of basic
+primitives which are roughly equivalent to those provided by the
+SIMULATION class of the Simula language. cppsim defines a "process"
+class which represents a simulation process. Moreover, facilities for
+process scheduling and statistics collection are also provided. The
+user may build more sophisticated simulation entities or
+synchronization mechanisms on top of those provided.
+
+See the file INSTALL for the installation instructions.
