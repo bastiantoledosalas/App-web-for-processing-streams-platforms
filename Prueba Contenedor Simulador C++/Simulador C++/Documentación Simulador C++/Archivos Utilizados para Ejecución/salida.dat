@@ -1,0 +1,279 @@
+ARRIVAL_RATE 0.0111255
+ARRIVAL_RATE 0.0585821
+SERVICE_TIME TwitterFilter_0 7.54962e-05
+NUMBER_OF_TUPLES TwitterFilter_0 0
+ARRIVAL_RATE 0.0147009
+SERVICE_TIME TwitterFilter_0 0.000497128
+NUMBER_OF_TUPLES TwitterFilter_0 0
+ARRIVAL_RATE 0.00639823
+SERVICE_TIME TwitterFilter_0 4.19205e-05
+NUMBER_OF_TUPLES TwitterFilter_0 0
+ARRIVAL_RATE 0.0672446
+SERVICE_TIME TwitterFilter_0 0.000112991
+NUMBER_OF_TUPLES TwitterFilter_0 0
+SERVICE_TIME TwitterFilter_0 0.000439437
+NUMBER_OF_TUPLES TwitterFilter_0 0
+
+PROCESSOR: Proc_10.0.0.1 in_use: 0 - average memory=200 - max memory=300 -- accs=3 -- cumm=600
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_0 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_1 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_2 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_3 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_4 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_5 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_6 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_7 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_8 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_9 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_10 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_11 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_12 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_13 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_14 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_15 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_16 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_17 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_18 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_19 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_20 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_21 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_22 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_23 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_24 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_25 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_26 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_27 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_28 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_29 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_30 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.1 - CORE: Core_31 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR utilization: 0
+
+PROCESSOR: Proc_10.0.0.2 in_use: 5e-09 - average memory=1450 - max memory=2800 -- accs=28 -- cumm=40600
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_5 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_6 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_7 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_8 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_9 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_10 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_11 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_12 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_13 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_14 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_15 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_16 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_17 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_18 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_19 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_20 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_21 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_22 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_23 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_24 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_25 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_26 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_27 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_28 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_29 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_30 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_31 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_0 time_in_use: 1e-09 total_time: 0.158491 utilization: 6.30952e-09
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_1 time_in_use: 1e-09 total_time: 0.158491 utilization: 6.30952e-09
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_2 time_in_use: 1e-09 total_time: 0.158491 utilization: 6.30952e-09
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_3 time_in_use: 1e-09 total_time: 0.158491 utilization: 6.30952e-09
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_4 time_in_use: 1e-09 total_time: 0.158491 utilization: 6.30952e-09
+PROCESSOR utilization: 9.85863e-10
+
+PROCESSOR: Proc_10.0.1.2 in_use: 0 - average memory=200 - max memory=300 -- accs=3 -- cumm=600
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_0 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_1 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_2 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_3 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_4 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_5 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_6 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_7 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_8 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_9 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_10 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_11 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_12 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_13 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_14 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_15 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_16 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_17 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_18 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_19 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_20 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_21 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_22 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_23 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_24 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_25 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_26 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_27 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_28 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_29 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_30 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.0.1.2 - CORE: Core_31 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR utilization: 9.85863e-10
+
+PROCESSOR: Proc_10.2.0.2 in_use: 0.00116698 - average memory=1184 - max memory=2400 -- accs=19 -- cumm=22500
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_5 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_6 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_7 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_8 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_9 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_10 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_11 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_12 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_13 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_14 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_15 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_16 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_17 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_18 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_19 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_20 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_21 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_22 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_23 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_24 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_25 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_26 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_27 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_28 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_29 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_30 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_31 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_0 time_in_use: 7.54972e-05 total_time: 0.158491 utilization: 0.000476351
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_1 time_in_use: 0.000497129 total_time: 0.158491 utilization: 0.00313665
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_2 time_in_use: 4.19215e-05 total_time: 0.158491 utilization: 0.000264504
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_3 time_in_use: 0.000112992 total_time: 0.158491 utilization: 0.000712927
+PROCESSOR: Proc_10.2.0.2 - CORE: Core_4 time_in_use: 0.000439438 total_time: 0.158491 utilization: 0.00277264
+PROCESSOR utilization: 0.000230097
+
+PROCESSOR: Proc_10.3.0.2 in_use: 0 - average memory=800 - max memory=1500 -- accs=15 -- cumm=12000
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_0 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_1 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_2 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_3 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_4 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_5 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_6 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_7 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_8 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_9 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_10 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_11 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_12 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_13 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_14 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_15 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_16 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_17 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_18 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_19 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_20 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_21 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_22 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_23 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_24 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_25 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_26 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_27 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_28 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_29 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_30 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR: Proc_10.3.0.2 - CORE: Core_31 time_in_use: 0 total_time: 0.158491 utilization: 0
+PROCESSOR utilization: 0.000230097
+
+NODE: HashtagCounter_0 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+NODE: HashtagCounter_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+NODE: HashtagCounter_2 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 2
+NODE: HashtagCounter_3 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 3
+	 utilization:0 throughput:0 replicas:4
+
+NODE: HashtagSplitter_0 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+NODE: HashtagSplitter_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+NODE: HashtagSplitter_2 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 2
+NODE: HashtagSplitter_3 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 3
+NODE: HashtagSplitter_4 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 4
+NODE: HashtagSplitter_5 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 5
+	 utilization:0 throughput:0 replicas:6
+
+NODE: KafkaSpout_0 use_time: 0 total_time:0.158491 utilization:0 throughput:6.30952 avg_resp_time:0 tuples: 1 replica: 0
+NODE: KafkaSpout_1 use_time: 0 total_time:0.158491 utilization:0 throughput:6.30952 avg_resp_time:0 tuples: 1 replica: 1
+NODE: KafkaSpout_2 use_time: 0 total_time:0.158491 utilization:0 throughput:6.30952 avg_resp_time:0 tuples: 1 replica: 2
+NODE: KafkaSpout_3 use_time: 0 total_time:0.158491 utilization:0 throughput:6.30952 avg_resp_time:0 tuples: 1 replica: 3
+NODE: KafkaSpout_4 use_time: 0 total_time:0.158491 utilization:0 throughput:6.30952 avg_resp_time:0 tuples: 1 replica: 4
+NODE: KafkaSpout_5 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 5
+NODE: KafkaSpout_6 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 6
+NODE: KafkaSpout_7 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 7
+NODE: KafkaSpout_8 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 8
+NODE: KafkaSpout_9 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 9
+	 utilization:0 throughput:31.5476 replicas:10
+
+NODE: SentimentAnalysis_0 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+NODE: SentimentAnalysis_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+	 utilization:0 throughput:0 replicas:2
+
+NODE: SentimentAnalysisToCassandra_0 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+NODE: SentimentAnalysisToCassandra_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+NODE: SentimentAnalysisToCassandra_2 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 2
+	 utilization:0 throughput:0 replicas:3
+
+NODE: TextSanitization_0 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+NODE: TextSanitization_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+NODE: TextSanitization_2 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 2
+NODE: TextSanitization_3 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 3
+NODE: TextSanitization_4 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 4
+NODE: TextSanitization_5 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 5
+NODE: TextSanitization_6 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 6
+NODE: TextSanitization_7 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 7
+NODE: TextSanitization_8 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 8
+NODE: TextSanitization_9 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 9
+NODE: TextSanitization_10 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 10
+NODE: TextSanitization_11 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 11
+NODE: TextSanitization_12 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 12
+NODE: TextSanitization_13 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 13
+NODE: TextSanitization_14 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 14
+	 utilization:0 throughput:0 replicas:15
+
+NODE: TopHashtag_0 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+NODE: TopHashtag_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+NODE: TopHashtag_2 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 2
+	 utilization:0 throughput:0 replicas:3
+
+NODE: TopHashtagToCassandra_0 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+NODE: TopHashtagToCassandra_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+NODE: TopHashtagToCassandra_2 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 2
+NODE: TopHashtagToCassandra_3 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 3
+NODE: TopHashtagToCassandra_4 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 4
+NODE: TopHashtagToCassandra_5 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 5
+NODE: TopHashtagToCassandra_6 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 6
+NODE: TopHashtagToCassandra_7 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 7
+NODE: TopHashtagToCassandra_8 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 8
+NODE: TopHashtagToCassandra_9 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 9
+	 utilization:0 throughput:0 replicas:10
+
+NODE: TwitterFilter_0 use_time: 0.00116697 total_time:0.158491 utilization:0.00736304 throughput:31.5476 avg_resp_time:0.000233395 tuples: 5 replica: 0
+NODE: TwitterFilter_1 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 1
+NODE: TwitterFilter_2 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 2
+NODE: TwitterFilter_3 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 3
+NODE: TwitterFilter_4 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 4
+NODE: TwitterFilter_5 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 5
+NODE: TwitterFilter_6 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 6
+NODE: TwitterFilter_7 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 7
+NODE: TwitterFilter_8 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 8
+NODE: TwitterFilter_9 use_time: 0 total_time:0.158491 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 9
+	 utilization:0.000736304 throughput:31.5476 replicas:10
+
+	 tuples generated:4 tuples processed:0 throughput topology:0 average tuple response time:inf total simulation time:0.158491
+
+
+			tuples generated:4 tuples processed:0 throughput topology:0 average tuple response time:inf total simulation time:0.158491
+
+			QUE DICE QUE SE HAN PROCESADO 0 TUPLAS
+
