@@ -1,0 +1,12 @@
+{
+  "rabbitmq": {
+    "connectionSettings": {
+      "connection": {
+        "hostname": "rabbitmq"
+      }
+    }
+  },
+  "mongo": {
+    "url": "mongodb://mongo:27017/mooc-backend-dev"
+  }
+}

@@ -1,0 +1,42 @@
+import { Query } from '../../../../../src/Contexts/Shared/domain/Query'
+import { type QueryHandler } from '../../../../../src/Contexts/Shared/domain/QueryHandler'
+import { QueryNotRegisteredError } from '../../../../../src/Contexts/Shared/domain/QueryNotRegisteredError'
+import { type Response } from '../../../../../src/Contexts/Shared/domain/Response'
+import { InMemoryQueryBus } from '../../../../../src/Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus'
+import { QueryHandlers } from '../../../../../src/Contexts/Shared/infrastructure/QueryBus/QueryHandlers'
+
+class UnHandledQuery extends Query {
+  static QUERY_NAME = 'unhandled.query'
+}
+
+class HandledQuery extends Query {
+  static QUERY_NAME = 'handled.query'
+}
+
+class MyQueryHandler implements QueryHandler<Query, Response> {
+  subscribedTo(): Query {
+    return HandledQuery
+  }
+
+  async handle(_query: HandledQuery): Promise<Response> {
+    return {}
+  }
+}
+
+describe('InMemoryQueryBus', () => {
+  it('throws an error if dispatches a query without handler', async () => {
+    const unhandledQuery = new UnHandledQuery()
+    const queryHandlers = new QueryHandlers([])
+    const queryBus = new InMemoryQueryBus(queryHandlers)
+    await expect(queryBus.ask(unhandledQuery)).rejects.toBeInstanceOf(
+      QueryNotRegisteredError
+    )
+  })
+  it('accepts a query with handler', async () => {
+    const handledQuery = new HandledQuery()
+    const myQueryHandler = new MyQueryHandler()
+    const queryHandlers = new QueryHandlers([myQueryHandler])
+    const queryBus = new InMemoryQueryBus(queryHandlers)
+    await expect(queryBus.ask(handledQuery)).resolves.toBeDefined()
+  })
+})

@@ -1,0 +1,72 @@
+# https://docs.docker.com/compose/yml/
+# Each service defined in docker-compose.yml must specify exactly one of
+# image or build. Other keys are optional, and are analogous to their
+# docker run command-line counterparts.
+#
+# As with docker run, options specified in the Dockerfile (e.g., CMD,
+# EXPOSE, VOLUME, ENV) are respected by default - you don't need to
+# specify them again in docker-compose.yml.
+#
+
+#Docker Compose that work with Docker Engine 19.03.0+.
+version: '3.9'
+
+#Networks to join.
+networks:
+  app-network:
+    driver: bridge
+
+#A service definition contains configuration that is applied to each container started for that service.
+services:
+  mongo:
+#Specify the image to start the container from.
+    image: mongo:5.0.0
+#add environment variables
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/mooc-backend-test
+    volumes:
+      - ./data/mongo:/data/db:delegated
+    ports:
+      - 27017:27017
+    networks:
+      - app-network
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+    networks:
+      - app-network
+  rabbitmq:
+    image: 'rabbitmq:3.8-management'
+    volumes:
+      - './docker/conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf'
+    environment:
+      - RABBITMQ_LOGS=/var/log/rabbitmq/rabbit.log
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD', 'rabbitmqctl', 'status']
+      interval: 10s
+      timeout: 10s
+      retries: 3
+  app:
+#Specify a custom container name
+    container_name: mooc-backend
+    build: .
+    command: bash -c "
+      pnpm run command:mooc:rabbitmq
+      && pnpm run start:mooc:backend
+      "
+    ports:
+      - 5000:5000
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app-network

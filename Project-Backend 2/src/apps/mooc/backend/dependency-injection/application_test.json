@@ -1,0 +1,13 @@
+{
+  "imports": [
+    {
+      "resource": "./application.json"
+    }
+  ],
+  "services": {
+    "Mooc.EnvironmentArranger": {
+      "class": "../../../../../test/Contexts/Shared/infrastructure/mongo/MongoEnvironmentArranger",
+      "arguments": ["@Mooc.Shared.ConnectionManager"]
+    }
+  }
+}

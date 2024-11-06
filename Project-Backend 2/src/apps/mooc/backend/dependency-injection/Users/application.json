@@ -1,0 +1,33 @@
+{
+  "services": {
+    "Mooc.Users.application.UserCreator": {
+      "class": "../../../../../Contexts/Mooc/Users/application/Create/UserCreator",
+      "arguments": [
+        "@Mooc.Users.domain.UserRepository",
+        "@Mooc.Shared.domain.EventBus"
+      ]
+    },
+    "Mooc.Users.application.UserLogin": {
+      "class": "../../../../../Contexts/Mooc/Users/application/Login/UserLogin",
+      "arguments": [
+        "@Mooc.Users.domain.UserRepository",
+        "@Mooc.Shared.domain.EventBus",
+        "@Mooc.UsersTokens.domain.UserTokenRepository"
+      ]
+    },
+    "Mooc.Users.domain.UserRepository": {
+      "class": "../../../../../Contexts/Mooc/Users/infrastructure/persistence/MongoUserRepository",
+      "arguments": ["@Mooc.Shared.ConnectionManager"]
+    },
+    "Mooc.Users.CreateUserCommandHandler": {
+      "class": "../../../../../Contexts/Mooc/Users/application/Create/CreateUserCommandHandler",
+      "arguments": ["@Mooc.Users.application.UserCreator"],
+      "tags": [{ "name": "commandHandler" }]
+    },
+    "Mooc.Users.LoginUserCommandHandler": {
+      "class": "../../../../../Contexts/Mooc/Users/application/Login/LoginUserCommandHandler",
+      "arguments": ["@Mooc.Users.application.UserLogin"],
+      "tags": [{ "name": "commandHandler" }]
+    }
+  }
+}
