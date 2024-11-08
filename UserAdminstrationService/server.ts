@@ -1,55 +1,51 @@
 
-//bodyParser middleware module for analyze the body of the entry request and expose in req.body.
-//Allow handling data sent
+//Módulo middleware bodyParser utilizado para analizar el cuerpo de la solicitud de entrada y exponerlo en req.body.
+//Permite manejar datos enviados
 import bodyParser from 'body-parser'
 
-//compress middleware module used to compress HTTP responses sent by the express server
-//Reduces the size of HTTP responses for clients.
+//Módulo middleware compress utilizado para comprimir las respuestas HTTP enviadas por el servidor de express
+//Reduce el tamaño de las respuestas HTTP para los clientes.
 import compress from 'compression'
 
-//errorHandler middleware module used to handle error in express applications
-//Catches unhandled errors during request processing and sends an appropiate error response to the client
+//Módulo middleware errorHandler utilizado para manejar errores en aplicaciones express
+//Captura errores no manejados durante el procesamiento de la solicitud y envía una respuesta de error adecuada al cliente
 import errorHandler from 'errorhandler'
 
-//Request reprents the HTTP request that express app receives.
-//Response represents the HTTP response that express send when receive an HTTP request.
-//NextFunction used to define middleware functions and access or modified to req,res and next middleware functions
+//Request representa la solicitud HTTP que recibe la aplicación express.
+//Response representa la respuesta HTTP que envía express al recibir una solicitud HTTP.
+//NextFunction se usa para definir funciones middleware y acceder o modificar req, res y las siguientes funciones middleware
 import express, {
   type Request,
   type Response,
   type NextFunction
 } from 'express'
 
-//Router allow support promises for route handlers
-//Allow use asynchronous functions directly as route handlers without the manual promise handling like express-async-handler
-//Simplifies writing asynchronous route handlers
+//Router permite el soporte de promesas para los controladores de rutas
+//Permite usar funciones asíncronas directamente como controladores de rutas sin manejar manualmente las promesas, como con express-async-handler
+//Simplifica la escritura de controladores de rutas asíncronas
 import Router from 'express-promise-router'
 
-//helmet middleware module used to enhance the security in express applications.
-//Allow setting various HTTP headers related to security measures, protect the application against common security vulnerabilties
-//When arrive any HTTP Request to the Node serve helmet is the first filter security used to manage this.
+//Módulo middleware helmet utilizado para mejorar la seguridad en aplicaciones express.
+//Permite establecer varios encabezados HTTP relacionados con medidas de seguridad, protegiendo la aplicación contra vulnerabilidades de seguridad comunes
+//Cuando llega cualquier solicitud HTTP al servidor de Node, helmet es el primer filtro de seguridad que se usa para manejar esto.
 import helmet from 'helmet'
 
-//import http from http module of node
+//Importa el módulo http de Node
 import type * as http from 'http'
 
-//http-status used to reference HTTP status codes in Node.js application
+//http-status se usa para referenciar códigos de estado HTTP en una aplicación Node.js
 import httpStatus from 'http-status'
 
-//Import registerRouters function in index.ts from /routes/ directory
-//this function Automatically Registers all routes or registers routes defined in route modules within a directory
+//Importa la función registerRoutes en index.ts desde el directorio /routes/
+//Esta función registra automáticamente todas las rutas o registra rutas definidas en los módulos de rutas dentro de un directorio
 import { registerRoutes } from './routes'
 
 /**
- * Server class: An HTTP server.
- *
- * @private readonly express    declares a private property express of type express.Aplication
- * @private readonly port       declares a private property port on which the server will listen for incoming requests
- * @private httpServer?         declares a private property httpServer of type http.Server, represent the HTTP server instance
- *                              ? indicates that the property is optional and can be undefined
+ * Server:    Representa un servidor HTTP
  * 
- * readonly is used to declare properties in a class that can only be assigned a value during initialization or within the constructor
- * Once initialized, their values cann't be changed
+ * @prvivate    express     Representa una instancia de la aplicación de Express
+ * @private     port        Representa el puerto en que el servidor escuchará las solicitudes entrantes
+ * @private     httpServer  Representa la instancia del servidor HTTP una vez que se inicializa y comienza a escuchar solicitudes 
 */
 export class Server {
   private readonly express: express.Application
@@ -57,91 +53,84 @@ export class Server {
   private httpServer?: http.Server
 
   /**
-   * Constructor function creates a new HTTP server
-   *
-   * @param   port        The port to listen on.
-   * @this    .port       Assigns the port parameter passed to the constructor to the port property of the class instance
-   * @this    .express    inicializes the express property of the class instance with a new instance of Express application
-  
-   * @middleware  bodyParser.json()       Use the bodyParser.json() middleware to analyze the body of the incoming requests with JSON format.
-   *                                      Allow to the server read the data in the body of a HTTP Request in JSON format.
    * 
-   * @middleware bodyParser.urlencoded()  Use the bodyParser.urlencoded() middleware to to analyze the body incoming request with the data format.
-   *                                      Extended parameter stablish in true to allow the analysis of nested objects in the data form.
-   * 
-   * @middleware  xssFilter               Use helmet.xssFilter() middleware to add the Header HTTP 'X-XSS-Protection'.
-   *                                      Help to prevent scripting atacks (XSS) filtering requests that contain malicious scripts.
-   * 
-   * @middleware  noSniff                 Use helmet.noSniff() middleware to add the Header HTTP 'X-Content-Type-Options'.
-   *                                      Help to prevent MIME sniffing atacks forzing that the Web Browser respect the type of content specific in the HTTP Responses.
-   *  
-   * @middleware  hidePoweredBy           Use helmet.hidePoweredBy() middleware to delete o replace the Header HTTP 'X-Powered-By'.
-   *                                      Help to hide details over the server and reduce the exposition to potential vulnerabilities.
-   *  
-   * @middleware frameguard               Use helmet.frameguard() middleware to add HTTP 'X-Frame-Options'.
-   *                                      Control if any Web Browser can charge the page content in a frame.
-   *                                      The configuration deny that the Web Browser charge the page content in a frame.
-   *                                      Protection against clickjacking atacks.
-   * 
-   * @function   express.use(compress)    Configure the content compression for the HTTP Responses.
-   *                                      Compress the Response before sending to the client and help to improve the perfomance of the application.
-   *                                      Reducing the size of the transferred data.
-   * 
-   * @const  router                       Creates a new instance of an Express router that will be used to hanlde the application's routes.
-   * @function router.use(errorhandler)   Adds middleware to the router to handle errors.
-   *                                      If an error ocurrs during the processing of a request in this router, the errorHandler() will be called to handle the error.
-   * @function  this.express.use(router)  Mounts the router on the main express app.
-   *                                      All the requests arriving at the application will be processed by the route.
-   *                                      The router will handle directing the request to the apropiate controller based on the specified route.
-   *@registerRoutes(router)          calls a function registerRoutes passing the router instance as an argument that registers routes on the router
-   * @router.use(err,_req,res,_next)  adds error handling middleware to the router to handle any uncaught errors during request processing and sends an appropriate error response.
-   * @returns The new HTTP server.
+   * @param port    Representa el puerto en que el servidor escuchará
    */
-
   constructor(port: string) {
     this.port = port
+    // Se crea una nueva instancia de la aplicación Express y se asigna a la propiedad express de la clase server
     this.express = express()
+    
+    // Configura el middleware bodyParser para analizar solicitudes entrantes con datos JSON
+    // Permite que req.body contenga el contenido del cuerpo de la solicitud en formato JSON
     this.express.use(bodyParser.json())
+    
+    // Configura bodyParser para analizar datos codificados en URL y extiende el soporte a objetos complejos
     this.express.use(bodyParser.urlencoded({ extended: true }))
+
+    // Se añade un filtro de protección contra ataque Cross-Site Scripting usando helmet que proporciona múltiples capas de seguridad para Express
     this.express.use(helmet.xssFilter())
+    
+    // Previene ataques en lo que el navegador intenta adivinar el MIME type y agrega una capa adicional contra ataques de inyección
     this.express.use(helmet.noSniff())
+
+    // Se oculta el encabezado que indica que el servidor utiliza Express, evitando revelar detalles de implementación
     this.express.use(helmet.hidePoweredBy())
+
+    // Protege contra ataques de tipo clickjacking evitando que la aplicación se cargue dentro de iframes
     this.express.use(helmet.frameguard({ action: 'deny' }))
 
+    // Se añade compression para comprimir las respuestas HTTP, mejorando el rendimiento del servidor
     this.express.use(compress())
+
+    // Se Crea una instancia de Router para definir rutas de forma modular
     const router = Router()
+
+    // Se agrega un middleware para manejar errores
     router.use(errorHandler())
+
+    // Se asocia el router a la aplicación express, permitiendo manejar las rutas definidas
     this.express.use(router)
+
+    // Se llama al método encargado de registrar las rutas de la aplicación utilizando el router
     registerRoutes(router)
+
+    // Se define un middleware de manejo de errores en el router. Si ocurre un error en alguna de las rutas se ejecuta esta función
     router.use(
       (err: Error, _req: Request, res: Response, _next: NextFunction) => {
+
+        // Se imprimire el error en la consola
         console.log(err)
+
+        // Se realiza una respuesta con el codigo 500 de error interno del servidor
         res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message)
       }
     )
   }
 
   /**
-   * Gets the HTTP server.
+   * getHttpServer:   Método que devuelve la instancia del servidor HTTP almacenada en httpServer o undefined si el servidor no ha sido actualizado
    *
-   * @returns The HTTP server.
+   * @returns         Retorna la instancia del servidor HTTP almacenada en httpServer
    */
   getHttpServer(): http.Server | undefined {
     return this.httpServer
   }
 
   /**
-   * Starts the HTTP server.
-   *
-   * @this httpServer   starts the express app listening on the specified port. 
-   *                    When the server starts successfully, the callback function provided to the listen method is executed
-   * @console log       logs a message indicating that the MoocBackendApp is running, including the URL and the mod in which it's running
-   *                    include a message for stop the MoocBackendApp (Ctrl-C)
-   * @returns           A promise resolves using resolver() when the server has started.
+   * listen:            Método asincrono que inicia el servidor HTTP
+   * 
    */
+
   async listen(): Promise<void> {
+
+    // Se crea una promesa que se resuelve cuando servidor comienza a escuchar
     await new Promise<void>((resolve) => {
+
+      // Se inicia el servidor HTTP en el puerto especificado
       this.httpServer = this.express.listen(this.port, () => {
+        
+        // Mensaje por consola indicando que el servidor se esta ejecutando en el modo (env)
         console.log(
           `Backend App is running at http://localhost:${this.port} in ${
             this.express.get('env') as string
@@ -154,26 +143,35 @@ export class Server {
   }
 
   /**
-   * Stops the HTTP server.
-   * 
-   * check if the httpServer is not null, ensuring that the server is running and needs to be stopped
-   * if the server is running closes the server calling close() method and provides a callback function to handle any error that occur during the closing process
-   * if an error ocurred the Promise is rejected with the error
-   * ensure that the Promise always will be resolved using resolver()
-   * 
-   * @returns A promise that resolves when the server has stopped.
+   * stop:    Método asincrono para detener el servidor express
    */
   async stop(): Promise<void> {
+
+    // Se crea una promesa que se resuelve cuando el servidor se detiene
     await new Promise<void>((resolve, reject) => {
+
+      // Se verifica si el servidor HTTP está definido
       if (this.httpServer != null) {
+
+        // Se realiza el cierre del servidor usando el método close con el parametro error que contiene un error que pudo haber ocurrido durante el proceso de cierre del servidor
         this.httpServer.close((error) => {
+          
+          // Se comprueba si hay algun error al cerrar el servidor
           if (error != null) {
+            
+            // Se llama al método reject con el error para rechazar la promesa asociada al método stop, indicando que el cierre no fue exitoso
             reject(error)
+
+            // Se usa return para salir de la función, evitando que se ejecute el codigo del resolve() en caso de que ocurra un error
             return
           }
+
+          // En caso de no haber ocurrido ningún error se ejecuta el método resolver, indicando que el cierre del servidor fue exitoso
           resolve()
         })
       }
+
+      // Si el servidor no estaba en ejecución, se resuelve llamando al método resolve
       resolve()
     })
   }
