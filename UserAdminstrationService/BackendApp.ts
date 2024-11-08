@@ -1,94 +1,97 @@
 
-//import http module like alias type in Typescript
-//Permit use the defined types in the http module inside the typescript without import the module in execution time
+//Se importa el módulo http como un tipo en TypeScript
+//Permite usar los tipos definidos en el módulo http dentro de TypeScript sin importar el módulo en tiempo de ejecución
 import type * as http from 'http'
 
-//Importing Eventus.ts Inteface from /Contexts/Shared/domain/ directory
+//Se importa la interfaz que contiene el Bus de Eventos
 import { type EventBus } from '../../../Contexts/Shared/domain/EventBus'
 
-//Importing container in index.ts from /dependency-injection/ directory
+//Se importa el contenedor de inyección de dependencias
 import container from './dependency-injection'
 
-//Importing Server.ts from /backend/ directory
+//Se importa la clase server que representa un servidor HTTP
 import { Server } from './server'
 
-//Importing DomainEventSubscribers.ts from /Contexts/Shared/infrastructure/EventBus/ directory
-//This class is responsible for finding all the domain event subscribers
+//Se importa la clase DomainEventSubscribers responsable de encontrar todos los suscriptores de eventos de dominio
 import { DomainEventSubscribers } from '../../../Contexts/Shared/infrastructure/EventBus/DomainEventSubscribers'
 
-//Importing RabbitMQConnection.ts from /Contexts/Shared/infrastructure/EventBus/RabbitMQ/ directory
-//This class is the connection to RabbitMQ
+//Se importa la clase RabbitMQConnection responsable de realizar la conexión hacia RabbitMQ
 import { type RabbitMQConnection } from '../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection'
 
 /**
- * The Mooc Backend App.
- *
- * @function start Starts the app.
- * @function stop Stops the app.
- */
+ * BackendApp:      Clase responsable de manejar el servidor http
+*/
 export class BackendApp {
+  
+  // Propiedad opcional que contiene la instancia del servidor HTTP
   server?: Server
 
-
   /**
- * getter method used to get the server HTTP asociate a instance of the server class
- * if server value is null or undenfined then returns undefined
- * else call the getHttpServer function to get the server Httpp.
- */
+   * get httpServer:  Método utilizado para obtener el servidor HTTP asociado a una instancia de la clase server
+   * 
+   * @returns:        Se retorna el servidor HTTP en caso de existir y undefined en caso de no existir  
+   */
   get httpServer(): http.Server | undefined {
     return this.server?.getHttpServer()
   }
 
   /**
-   * start the HTTP server of the app.
+   * start:     Método asincrono utilizado para iniciar el servidor HTTP de la aplicación
    * 
-   * @function start                async function that return a promise that will be resolve with void value.
-   * @const port                    inicialize port variable with process.env.PORT value, if process.env.Port variable isn't defined assign 5000 as predefined value.
-   * @this server                   Create a new Instance of class Server that represent the HTTP server
-   * @await this.configureEventBus  wait for complete the execution of configureEventBus method, configureEventBus configurate a event bus for the app.
-   * @await this.server.listen      wait that the HTTP server begin to listen the entry request, listen() method return a promise that been resolve when the server is ready to accept conections
-   * @returns                       A promise that resolves when the app has started.
+   * @return Promise<void>  Se retorna una promesa que se resuelve cuando la aplicación backend ha sido completamente iniciada
    */
   async start(): Promise<void> {
+
+    // Se determina en que puerto se ejecutará el servidor
+    // process.env.PORT intenta obtener el valor del puerto definido en las variables de entorno del sistema
     const port = process.env.PORT ?? '5000'
+
+    // Se crea una nueva instancia de server pasandole el valor del puerto al constructor
     this.server = new Server(port)
+
+    // Se llama al método configureEventBus para configurar el bus de eventos de la aplicación que maneja la conexión con RabbitMQ y agrega suscriptores de eventos de dominio
     await this.configureEventBus()
+
+    // Se llama al método listen para que el servidor comience a escuchar solicitudes de entrada en el puerto definido
     await this.server.listen()
   }
 
   /**
-   * Stops the app.
-   *
-   * @const rabbitMQConnection  get a instance of RabbitMQConnection from the container of dependencies located in dependency-injection/Shared/application.json file
-   * @await rabbitMQConnection  wait for the RabbitMQConnection to close using close() method
-   * @await this.server         The HTTP server is stopped and prevents erros if this.server isn't null or undefined.
-   * @operator ?                Used to guarantee that the call to stop() just be realize if this.server isn't null or undefined
-   * @returns                   A promise that resolves when the app has stopped.
+   * stop:      Método asincrono responsable de devolver una promesa que se resuelve cuando la aplicación se ha detenido por completo         
+   * 
+   * @returns Promise<void>   Una promesa que se resuelve cuando la aplicación es detenida por completo
    */
   async stop(): Promise<void> {
+
+    // Se obtiene una instancia de RabbitMQConnection desde el contenedor de dependencias, almacena y gestiona instancias compartidas en la aplicación
     const rabbitMQConnection = container.get<RabbitMQConnection>(
       'Shared.RabbitMQConnection'
     )
+
+    // Se llama al método close de la instancia de RabbitMQConnection para cerrar la conexión con el servidor RabbitMQ
     await rabbitMQConnection.close()
+
+    // Se llama al método stop para realizar el cierre del servidor HTTP si es que este existe
     await this.server?.stop()
   }
 
   /**
-   * Initializes the event bus by obtaining necessary dependencies from the container
-   * Connecting to RabbitMQ and adding suscribers to the event bus to handle domain events
-   * 
-   * @const eventBus            retrieves an instance of EventBus that is responsible for managing event-related operations
-   *                            the instance of EventBus is obtaining from the container of dependencies located in dependency-injection/Shared/application.json file
-   * @const rabbitMQConnection  obtain a instance of RabbitMQConnection from the container of dependencies located in dependency-injection/Shared/application.json file
-   * @await rabbitMQConnection  connects to the RabbitMQ server using the connect() method of rabbitMQConnection instance
-   * @function addSubscribers   suscribers are added to the event bus to handle domain events
-   * @function container.get<RabbitMQConnection>('Mooc.Shared.RabbitMQConnection') obtain an instance of the service RabbitMQConnection.
-   * @function DomainEventSubscribers.from(container) take the container DI as argument and extract the event suscribers domain from the container 
+   * configureEventBus:   Método asincrono responsable de inicializar el bus de eventos para obtener las dependencias necesarias del contenedor
+   *                      Conectandose a RabbitMQ y agregando suscriptores al bus de eventos para manejar eventos de dominio en el sistema
    */
   private async configureEventBus(): Promise<void> {
+
+    // Se obtiene una instancia del bus de eventos del contenedor de dependencias
     const eventBus = container.get<EventBus>('App.Shared.domain.EventBus')
+
+    // Se obtiene una instancia de RabbitMQConnection desde el contenedor de dependencias
     const rabbitMQConnection = container.get<RabbitMQConnection>('Shared.RabbitMQConnection')
+
+    // Se establece una conexión al servidor de RabbitMQ para poder interactuar con las colas de mensajes
     await rabbitMQConnection.connect()
+
+    // Se llama al método from para obtener todos los suscriptores de eventos de dominio desde el contenedor de dependencias
+    // Se llama al método addSubscribers para agregar los suscriptores de eventos al bus de eventos, permitiendo que la aplicación responda a los eventos del dominio
     eventBus.addSubscribers(DomainEventSubscribers.from(container))
   }
 }
