@@ -54,6 +54,9 @@ export const register = (router: Router): void => {
   // Se devuelve una instancia de UserPutController desde el contenedor de inyección de dependencias
   const userPutController = container.get('controllers.UserPutController')
 
+  // Se devuelve una instancia de UserGetController desde el contenedor de inyección de dependencias
+  const userGetController = container.get('controllers.UserGetController')
+
   /**
    * router.put:    Método PUT del objeto router proporcionado por Express para definir y manejar solicitudes de actualización de usuarios
    * 

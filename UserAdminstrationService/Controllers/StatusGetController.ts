@@ -6,7 +6,7 @@ import { type Request, type Response } from 'express'
 //httpStatus del paquete http-status es utilizada para referenciar los CODIGOS DE ESTADO HTTP en Node JS o una aplicación Express.
 import httpStatus from 'http-status'
 
-//Importando la Interfaz Controller.ts desde el directorio /controllers/
+// Se importa la interfaz de Controller que define el método run que debe ser utilizado por todos aquellos controladores que implementen esta interfaz
 import { type Controller } from './Controller'
 
 /**

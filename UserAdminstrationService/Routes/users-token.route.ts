@@ -10,8 +10,7 @@ import { body } from 'express-validator'
 // Se importa el método validateReqSchema encargado de validar el esquema de la solicitud utilizando reglas definidas previamente
 import { validateReqSchema } from './index'
 
-//Importando el contenedor de dependencias 'container' ubicado en la clase index.ts desde el directorio /dependency-injection/
-//Este contenedor se utiliza para gestionar las instancias de los controladores y otros servicios de la aplicación
+// Se importa el contenedor responsable de manejar la inyección de dependencias
 import container from '../dependency-injection'
 
 /**
