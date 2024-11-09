@@ -11,7 +11,7 @@ import type StatusGetController from '../controllers/StatusGetController'
 import container from '../dependency-injection'
 
 /**
- * register:        
+ * register:    Método encargado de definir una nueva ruta modular para el servidor HTTP de Express      
  * 
  * @param router    Se utiliza para definir rutas de manera modular y manejarlas en aplicaciones Express
  */
