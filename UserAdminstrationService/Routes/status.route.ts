@@ -1,15 +1,14 @@
 
-//Router es utilizado para definir manejadores 'handlers' de rutas modulares y montables en Express.
-//Request representa una SOLICITUD HTTP en Express.
-//Response representa una RESPUESTA HTTP en Express que es enviada cuando se recibe una SOLICITUD HTTP.
+// Se importa Router para la creación de controladores de rutas modulares y montables
+// Se importa Request para representar la solicitud HTTP que recibe la aplicación Express
+// Se importa Response para representar la respuesta HTTP que Express envía al recibir una solicitud HTTP
 import { type Router, type Request, type Response } from 'express'
 
 //Importando la clase StatusGetController.ts desde el directorio /controllers/
 //Este controlador maneja la lógica para la ruta de estado o 'status'
 import type StatusGetController from '../controllers/StatusGetController'
 
-//Importando el contenedor de dependencias 'container' ubicado en la clase index.ts desde el directorio /dependency-injection/
-//Este contenedor se utiliza para gestionar las instancias de los controladores y otros servicios de la aplicación
+// Se importa el contenedor de dependencias para la gestión de instancias de los controladores y otros servicios de la aplicación
 import container from '../dependency-injection'
 
 /**register: Función implementada para registrar un manejador de ruta (clase StatusGetController) para una SOLICITUD GET a la ruta '/status'

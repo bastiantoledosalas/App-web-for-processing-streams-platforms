@@ -1,54 +1,68 @@
 
-//Router used to create modular, mountable route handlers
-//Request reprents the HTTP request that express app receives.
-//Response represents the HTTP response that express send when receive an HTTP request.
+// Se importa Router para la creación de controladores de rutas modulares y montables
+// Se importa Request para representar la solicitud HTTP que recibe la aplicación Express
+// Se importa Response para representar la respuesta HTTP que Express envía al recibir una solicitud HTTP
 import { type Request, type Response, type Router } from 'express'
 
-//body is used to define validation chains for request body parameters in Express routes
+// Se importa body para realizar validaciones en los parámetros del cuerpo de las solicitudes HTTP
 import { body } from 'express-validator'
 
-//Importing the validateReqSchema in index.ts function from index.ts in routes directory
-import { validateReqSchema } from '.'
+// Se importa el método validateReqSchema encargado de validar el esquema de la solicitud utilizando reglas definidas previamente
+import { validateReqSchema } from './index'
 
-//Importing container in index.ts from /dependency-injection/ directory
+// Se importa el contenedor responsable de manejar la inyección de dependencias
 import container from '../dependency-injection'
 
-/** register: function that take the router as argument 
- * 
- * @body id, firstName, lastName, repeatPassword  2 Validations: Check if this fields exist and verificate if are a string values    
- * @body email                                    2 Validations: Check if this field exist and verificate if is a valid email address format (alphanumeric part followed by the @ symbol)
- * for repeatPassword .custom defines a custom validation rule: Check if the value matches the value of password field                           
- * if the validation fails (passwords don't match) returns an error for the request.
- */
 
+/**
+ * register:        Método encargado de de definir y registrar una ruta para actualizar usuarios, valida y verifica que los datos sean correctos
+ *                  Además se delega la lógica al controlador encargado de maneja la solicitud       
+ * 
+ * @param router    Utilizado para definir y manejar rutas de manera modular
+ */
 export const register = (router: Router): void => {
+
+  // Se define un arreglo que contiene las validaciones para los campos dentro del cuerpo de una solicitud
   const reqSchema = [
+
+    // Se selecciona la propiedad id del cuerpo de la solicitud y se verifica si esta propiedad se encuentre presente en el cuerpo de la solicitud
     body('id').exists().isString(),
+
+    // Se selecciona la propiedad firstName del cuerpo de la solicitud y se verifica si esta propiedad se encuentre presente en el cuerpo de la solicitud
     body('firstName').exists().isString(),
+
+    // Se selecciona la propiedad lastName del cuerpo de la solicitud y se verifica si esta propiedad se encuentra presente en el cuerpo de la solicitud
     body('lastName').exists().isString(),
+
+    // Se selecciona la propiedad email del cuerpo de la solicitud y ser verifica si esta propiedad se encuentra presente en el cuerpo de la solicitud
+    // Se utiliza el método isEmail para validar que este valor siga el formato estándar de un correo electrónico (alfanumerico, seguido del simbolo @ y un dominio válido)
     body('email').exists().isEmail(),
+
+    // Se selecciona la propiedad password del cuerpo de la solicitud y ser verifica si esta propiedad se encuentra presente en el cuerpo de la solicitud
     body('password').exists().isString(),
+
+    // Se selecciona la propiedad repeatPassword del cuerpo de la solicitud y se verifica si esta propiedad se encuentra presente en el cuerpo de la solicitud
+    // Se llama al método custom que recibe value (valor de repeatPassword) y req (solicitud HTTP completa)
+    // custom verifica que repeatPassword sea igual al valor de password dentro del cuerpo de la solicitud HTTP
     body('repeatPassword').exists().isString().custom((value, { req }) => {
+
+        // Si los valores de repeatPassword y password son iguales se retorna value, en caso de no coincidir se genera un error de validación
         return value === req.body.password
       })
   ]
 
-  /**
-   * This code retrieves an instance of UserPutController class from dependency-injection container
-   * @Apps.mooc.controllers.UserPutController is used as the indentifier or key to locate UserPutcontroller in dependency-injection/apps/application.json route
-   */
+  // Se devuelve una instancia de UserPutController desde el contenedor de inyección de dependencias
   const userPutController = container.get('controllers.UserPutController')
 
   /**
-   * PUT method is used to update or modified values in users
- * router.put: Define a PUT route handler for /users/:id endpoint
- * Besides to use the reqSchema Array to validate the request body parameters with validateReqSchema function
- * Delegated the handling of the request to run method in userPutController.ts locate in controller directory
- */
-  router.put(
-    '/users/:id',
-    reqSchema,
-    validateReqSchema,
-    (req: Request, res: Response) => userPutController.run(req, res)
-  )
+   * router.put:    Método PUT del objeto router proporcionado por Express para definir y manejar solicitudes de actualización de usuarios
+   * 
+   * @param '/users/:id'        Se define el endpoint donde id representa el identificador del usuario que se quiere actualiza y será extraido de la URL de la solicitud HTTP (req.params.id)
+   * @param reqSchema           Esquema de validación para el cuerpo de la solicitud HTTP, asegurandose que en el cuerpo de la solicitud HTTP los datos sean validos y cumplan el formato 
+   * @param validateReqSchema   Método encargado de validar y procesar el resultado de la validación hecha por express-validatorr, permite que la solicitud sea manejada por un controlador especifico
+   * @callback  (req,res)       Controlador final que maneja la solicitud y llama al controlador userPutController pasando el objeto req y res como parametros
+   *                            userPutController se encarga de maneja la solicitud de actualización de datos de un usuario especifico      
+   */
+  router.put('/users/:id', reqSchema, validateReqSchema, (req: Request, res: Response) => userPutController.run(req, res) )
 }
+
