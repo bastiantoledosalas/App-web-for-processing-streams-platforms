@@ -8,7 +8,8 @@ import { type Router, type Request, type Response } from 'express'
 //Este controlador maneja la lógica para la ruta de estado o 'status'
 import type StatusGetController from '../controllers/StatusGetController'
 
-// Se importa el contenedor de dependencias para la gestión de instancias de los controladores y otros servicios de la aplicación
+//Importando el contenedor de dependencias 'container' ubicado en la clase index.ts desde el directorio /dependency-injection/
+//Este contenedor se utiliza para gestionar las instancias de los controladores y otros servicios de la aplicación
 import container from '../dependency-injection'
 
 /**register: Función implementada para registrar un manejador de ruta (clase StatusGetController) para una SOLICITUD GET a la ruta '/status'

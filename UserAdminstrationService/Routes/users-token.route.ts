@@ -43,5 +43,5 @@ export const register = (router: Router): void => {
    * @callback  (req,res)       Controlador final que maneja la solicitud y llama al controlador userPostController pasando el objeto req y res como parametros
    *                            userPostController maneja las solicitudes de inicio de sesión      
    */
-  router.post('/auth/login',reqSchema,validateReqSchema,(req: Request, res: Response) => userPostController.run(req, res) )
+  router.post('/auth/login', reqSchema, validateReqSchema, (req: Request, res: Response) => userPostController.run(req, res) )
 }

@@ -64,5 +64,6 @@ export const register = (router: Router): void => {
    *                            userPutController se encarga de maneja la solicitud de actualización de datos de un usuario especifico      
    */
   router.put('/users/:id', reqSchema, validateReqSchema, (req: Request, res: Response) => userPutController.run(req, res) )
+  router.get('/users', reqSchema, validateReqSchema, (req:Request, res:Response) => userGetController.run(req,res))
 }
 
