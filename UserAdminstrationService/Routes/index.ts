@@ -1,88 +1,86 @@
 //index.ts (master class for express.Router)
 //import specific types from express library
 
-//NextFunction used to define middleware functions and access or modified to req,res and next middleware functions
-//Router used to create modular, mountable route handlers
-//Request reprents the HTTP request that express app receives.
-//Response represents the HTTP response that express send when receive an HTTP request.
+// NextFunction used to define middleware functions and access or modified to req,res and next middleware functions
+// Se importa Router para la creación de controladores de rutas modulares y montables
+// Se importa Request para representar la solicitud HTTP que recibe la aplicación Express
+// Se importa Response para representar la respuesta HTTP que Express envía al recibir una solicitud HTTP
+import { type NextFunction, type Router, type Request, type Response } from 'express'
 
-import {
-  type NextFunction,
-  type Router,
-  type Request,
-  type Response
-} from 'express'
-
-//ValidationResult used for inputs validation
+// Se importa el método validationResult para revisar si las validaciones de parámetros de las solicitudes HTTP han fallado o no
 import { validationResult } from 'express-validator'
 
-//glob used for file system operations
-//globSync is used to finding files that match a specific pattern in a directory.
+// Se importa globSync para realizar la carga de las rutas dinámicamente desde los archivos en el sistema de archivos del contenedor del servicio
 import { globSync } from 'glob'
 
-//http-status used to reference HTTP status codes in Node.js application
+// Se importa el módulo httpStatus para el retorno del codigo de error cuando las validaciones no son correctas
 import httpStatus from 'http-status'
 
-//path module used to working with file paths and directory paths
+// Se importa el módulo path para el manejo de rutas de archivos de forma segura y compatible entre sistemas operativos
 import path from 'path'
 
-
-
 /**
- * register function: Registers a route
+ * register:        Método encargado de cargar rutas de manera dinámica y registrarlas en el enrutador de Express
  * 
- * @param routePath A string representing The path to a route module.
- * @param router    A instance of the Express Router that will be used to register routes.
- * @returns         A promise that resolves when the route has been registered.
- * The await import is used to asynchronously load the module.
- * Once the module is loaded, it's assigned to the route variable.
+ * @param routePath   Ruta del archivo de ruta que se desea cargar
+ * @param router      Instancia del enrutador de Express
  */
-
 async function register(routePath: string, router: Router): Promise<void> {
+
+  // El import(routePath) permite cargar el módulo dinamicamente en tiempo de ejecución en la ruta especificada por routePath
   const route = await import(routePath)
+  
+  // Se registra la ruta definida en el enrutador de Express
   route.register(router)
 }
 
 /**
- * registerRouters function: Automatically Registers all routes or registers routes defined in route modules within a directory
- *
- * @param router  An instance of the Express Router to which the routes will be registered.
- * @returns       An promise that resolves when all routes have been registered.
- * const routes matches files with any name that have .route extension in any subdirectory (status.routes.ts, user-token.route.ts,etc)
- * for each route file call the register function to register the route defined in that file with the provided router.
+ * registerRoutes:  Método responsable de realizar la busqueda de clases que manejejn rutas especificas y se encarga de ejecutar la función register de cada una de estas
+ *                  pasando la instancia del router para que registre las rutas en la app de Express
+ * 
+ * @param router    Instancia del enrutador de Express
  */
-
 export function registerRoutes(router: Router): void {
+
+  // Se obtiene la lista de archivos que coincidan con el patrón .route
+  // __dirname es la variable especial de Node que referencia el directorio donde se encuentra la clase que se esta ejecutando (index.ts)
   const routes = globSync(path.join(__dirname, '**/*.route.*'))
+
+  // Se recorre cada ruta de archivo presente en la lista routes que ha sido encontrada utilizando la variable route
   routes.forEach((route) => {
+
+    // Se ejecuta el método register de cada una de las clases .route encontradas
     void register(route, router)
   })
 }
 
 /**
- * validateReqSchema function: Validates the request schema using the validationResult function
- *
- * @param Request   An instance of request object 
- * @param Response  An instance of response object
- * @param next      The next middleware function in the Express middleware chain 
- * ValidationResult extract validation errors from the request, if is empty return an undefined
+ * validateReqSchema:   Método utilizado para validar la entrada de solicitudes HTTP antes de realizar la ejecución de controladores para estas
+ *                      Se verifica si los datos enviados en la solicitud HTTP cumplen con los criterios de validación definidos
+ *                      Si falla la validación se retorna un error con los detalles
  * 
+ * @param req     Objeto de solicitud que contiene los datos enviados por el cliente 
+ * @param res     Objeto de respuesta que se usa para enviar una respuesta al cliente
+ * @param next    Método utilizado para pasar el controlor a un controlador o middleware
+ * @returns       No se retorna nada
  */
-export function validateReqSchema(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): undefined {
+export function validateReqSchema( req: Request, res: Response, next: NextFunction ): undefined {
+
+  // Se hace el llamado al método validationResult para verificar si los datos en la solicitud cumplen con las reglas de validación definidas
   const validationErrors = validationResult(req)
+
+  // Si la validación se realiza correctamente y los datos cumplen con las reglas de validación se llama al método next para pasar el control al middleware o controlador de la ruta
   if (validationErrors.isEmpty()) {
     next()
+    
+    // Se detiene la función y no se ejecuta el resto de codigo
     return
   }
-  /**
-   * ValidationErrors.mapped converts the array of errors into an object where each key is the parameter or field name 
-   * The value is the corresponding error message
-   * If there are validations errors the HTTP response status code to 422 and send JSON response with the validation errors
-   */
+  
+  // Se llama al método mapped para convertir los errores de validación en un formato estructurado, donde las claves son los nombres de los campos que fallaron la validación y valores
   const errors = validationErrors.mapped()
+
+  // Al encontrarse errores de validación de la solicitud HTTP se establace el codigo de estado de la respuesta HTTP a 422  Unprocessable Entity usando el módulo http-status
+  // Se envia la respuesta JSON con los detalles de los errores de validación
   res.status(httpStatus.UNPROCESSABLE_ENTITY).json({ errors })
 }
