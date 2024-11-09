@@ -17,7 +17,7 @@ import container from '../dependency-injection'
  */
 export const register = (router: Router): void => {
 
-  // Se devuelve una instancia de StatusGetController desde el contenedor de inyección de dependencias
+  // Se devuelve una instancia de controller que debe ser de tipo StatusGetController desde el contenedor de inyección de dependencias
   const controller: StatusGetController = container.get('controllers.StatusGetController')
 
   /**
