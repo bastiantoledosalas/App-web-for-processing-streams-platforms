@@ -39,6 +39,7 @@ services:
     build:
       context: ./mongodb-service              # Directorio donde está el Dockerfile del servicio de base de datos MongoDB
     container_name: mongodb-service           # Nombre del contenedor de servicios de base de datos MongoDB
+    restart:  always
     env_file:
       - ./mongodb-service./config/mongodb.env #Carga las variables de entorno específicas de MongoDB
     environment:
