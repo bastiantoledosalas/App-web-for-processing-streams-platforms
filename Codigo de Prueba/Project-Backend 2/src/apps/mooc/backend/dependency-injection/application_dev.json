@@ -1,7 +1,0 @@
-{
-  "imports": [
-    {
-      "resource": "./application.json"
-    }
-  ]
-}
