@@ -1,69 +1,64 @@
 
 services:
-
-  rabbitmq-service:
-    image: 'rabbitmq:3.8-management'
-    build: 
-      context: ./rabbitmq-service    # Directorio donde está el Dockerfile de RabbitMQ
-    container_name: rabbitmq-service  # Nombre del Contenedor de servicio RabbitMQ
-    env_file:
-      - ./rabbitmq-service./config/rabbitmq.env # Carga las variables de entorno específicas de RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
     volumes:
-      - ./rabbitmq-service./config/rabbitmq.env:/etc/rabbitmq/rabbitmq.env # Monta el archivo rabbitmq.env en un volúmen
-    environment:
-      - RABBITMQ_LOGS=/var/log/rabbitmq/rabbit.log
+      - /var/lib/rabbitmq
     ports:
-      - 5672:5672             # Puerto de mensajeria
-      - 15672:15672           # Interfaz de administración
+      - "5672:5672"     # Puerto para comunicación con microservicios
+      - "15672:15672"   # Puerto para la consola de administración
+    environment:
+      - RABBITMQ_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_PASS=${RABBITMQ_DEFAULT_PASS}
     networks:
-      - backend_network
+      - backend-services-network
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 10s
       timeout: 10s
       retries: 5
 
-  simulator-service:
-    build:
-      context: ./simulator-service    # Directorio donde está el Dockerfile del servicio de simulación
-    container_name: simulator-service # Nombre del Contenedor de servicio del simulador C++
-    depends_on:
-      - rabbitmq-service
-    env_file:
-      - /app/rabbitmq.env             # Se accede al rabbitmq.env montado en el volumen
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:${USER_DATABASE_PORT}"
     networks:
-      - backend_network
-  
-  mongodb-service:
-    image: mongodb-atlas-local:latest
-    build:
-      context: ./mongodb-service              # Directorio donde está el Dockerfile del servicio de base de datos MongoDB
-    container_name: mongodb-service           # Nombre del contenedor de servicios de base de datos MongoDB
-    restart:  always
-    env_file:
-      - ./mongodb-service./config/mongodb.env #Carga las variables de entorno específicas de MongoDB
+      - backend-services-network
     environment:
-      - MONGO_URL=mongodb://mongo:27017/      # Establece la variable de entorno con la URL de conexión para acceder a la interfaz web de Mongo Express
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
+      MONGO_INITDB_ROOT_USERNAME=${USER_MONGO}
+      MONGO_INITDB_ROOT_PASSWORD=${USER_MONGO_PASSWORD}
     volumes:
-      - ./data/mongo:/data/db:delegated       # Establece "delegated" priorizando la escritura en el contenedor sobre la sincronización con el host
-    ports:
-      - 27018:27017                             # Mapeo del puerto 8081 del host al puerto 8081 del contenedor de servicios mongodb-service
+      - mongo_data:/data/db
+
+  BFF:
+    build: ./bff-service
+    container_name: bff_service
+    ports: "3000:3000"
+    depends_on:
+      - rabbitmq
+      - mongodb
+    environment:
+      - RABBITMQ_URL=${RABBITMQ_URL}
     networks:
-      - backend_network
+      - backend-services-network
+    restart: always
   
-  apigateway-service:
-    build:
-      context: ./apigateway-service
-    container_name: apigateway-service
-    env_file:
-      - ./apigateway-service./config/apigateway.env
-    ports:
-      -5000:5000
+  users-service:
+    build: ./users
+    container_name: user-service
+    ports: ["3001:${USER_SERVICE_PORT}"]
+    depends_on:
+      - rabbitmq
+      - mongodb
+    environment:
+      - MONGODB_URI=mongodb+srv://${USER_MONGO}:${USER_MONGO_PASSWORD}@${USER_MONGO_CLUSTER}/?retryWrites=true&w=majority=${USER_MONGO_DATABASE}
+      - RABBITMQ_URL=${RABBITMQ_URL}
     networks:
-      -backend_network
+      - backend-services-network
 
 networks:
-  backend_network:
+  backend-services-network:
     driver: bridge
