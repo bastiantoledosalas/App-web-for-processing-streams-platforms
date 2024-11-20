@@ -17,6 +17,9 @@ async function bootstrap() {
       },
     },
   });
+  app.enableCors({
+    origin: 'http://localhost'
+  });
 
   await app.startAllMicroservices();
   await app.listen(process.env.BFF_SERVICE_PORT)

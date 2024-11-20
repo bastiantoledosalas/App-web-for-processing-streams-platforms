@@ -1,13 +1,26 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { SimulationProcessor } from './simulation.processor';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Post('create-user')
-  async createUser(@Body() userData: any) {
-    // Llama al servicio para enviar un mensaje a RabbitMQ
-    return this.appService.sendUserCreationMessage(userData);
-  }
-}
+@Module({
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    ClientsModule.registerAsync([
+      {
+        name: 'SIMULATION_QUEUE',
+        useFactory: () => ({
+          transport: Transport.RMQ,
+          options: {
+            urls: [process.env.RABBITMQ_URL || 'amqp://admin:admin@rabbitmq:5672'],
+            queue: 'simulation_queue',
+            queueOptions: { durable: true },
+          },
+        }),
+      },
+    ]),
+  ],
+  controllers: [],
+  providers: [SimulationProcessor],
+})
+export class AppModule {}
