@@ -3,6 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Simulation-MongoDB-Service is Running';
+    return 'Simulations-MongoDB-MicroService is Running';
   }
 }

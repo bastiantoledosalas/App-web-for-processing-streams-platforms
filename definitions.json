@@ -1,0 +1,39 @@
+{
+    "users": [
+      {
+        "name": "bff-service",
+        "password": "bffpassword",
+        "tags": "administrator"
+      },
+      {
+        "name": "user-service",
+        "password": "userspassword",
+        "tags": "administrator"
+      }
+    ],
+    "vhosts": [
+      {
+        "name": "/"
+      }
+    ],
+    "permissions": [
+      {
+        "user": "bff-service",
+        "vhost": "/",
+        "configure": ".*",
+        "write": ".*",
+        "read": ".*"
+      },
+      {
+        "user": "user-service",
+        "vhost": "/",
+        "configure": ".*",
+        "write": ".*",
+        "read": ".*"
+      }
+    ],
+    "policies": [],
+    "queues": [],
+    "exchanges": []
+  }
+  

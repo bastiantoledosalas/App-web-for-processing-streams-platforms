@@ -13,7 +13,7 @@ async function bootstrap() {
       urls: [process.env.RABBITMQ_URL],   
       queue: 'bff_queue',                 //Nombre de la cola que se usará
       queueOptions: {
-        durable: false,
+        durable: true,
       },
     },
   });

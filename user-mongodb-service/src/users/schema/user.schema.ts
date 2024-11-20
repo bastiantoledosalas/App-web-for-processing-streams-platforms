@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory, getModelToken } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory  } from '@nestjs/mongoose';
 import { Document, Schema as dbSchema } from 'mongoose';
 
 export type UserDocument = User & Document;
@@ -40,6 +40,13 @@ export class User{
     required: [true, 'Un usuario debe tener un rol']
   })
   role: string
+  
+  @Prop({
+    type: Date, default: Date.now
+  })
+  createdAt: Date
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+

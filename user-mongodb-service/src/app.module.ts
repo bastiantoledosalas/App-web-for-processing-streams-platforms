@@ -2,23 +2,25 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
-import { RabbitMQModule } from './rabbitmq/rabbitmq.module';  // Importa el módulo RabbitMQ
-import { UsersService } from '@@users/users.service';
+import configuration from './config/configuration';
+import { RabbitMQModule } from './rabbitmq/rabbitmq.module';
 
 @Module({
   imports: [
+    UsersModule,
     RabbitMQModule,
-    ConfigModule.forRoot({ isGlobal: true }), // Configuración de variables de entorno
+    ConfigModule.forRoot({
+      load: [configuration],
+       isGlobal: true
+      }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('MONGO_URI'),
+        uri: configService.get<string>('database.uri'),   // MongoDB Atlas URL
       }),
       inject: [ConfigService],
     }),
-    UsersModule,
   ],
-  providers: [UsersService]
 })
 export class AppModule {}
 
