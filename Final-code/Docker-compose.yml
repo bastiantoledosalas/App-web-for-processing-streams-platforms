@@ -1,0 +1,113 @@
+services:
+
+  # Servicio RabbitMQ con la consola de administración habilitada
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" 
+      - "15672:15672"   
+    volumes:
+      - ./conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./conf/definitions.json:/etc/rabbitmq/definitions.json
+    networks:
+      - backend-services-network
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s      
+      timeout: 5s         
+      retries: 5          
+    restart: always      
+
+  # Frontend
+
+  frontend:
+    build: ./front-react
+    container_name: frontend
+    ports: 
+    - '8000:8000'
+    environment:
+      - NEXT_PUBLIC_API_URL=http://bff:3000
+    networks:
+      - backend-services-network
+
+  # Servicio BackendForFront(BFF)
+  bff:
+    build: ./ms-bff
+    container_name: bff
+    ports:
+      - "3000:3000"
+    environment:
+      - BFF_SERVICE_PORT=3000
+      - JWT_SECRET=secret
+      - USERS_SERVICE_URL=http://user-service:3001/ms-user
+      - SIMULATIONS_SERVICE_URL=http://simulation-service:3002/ms-simulation
+      - SIMULATE_START_URL=http//producers-service:3003/producer
+    networks:
+      - backend-services-network
+    command: ["node", "dist/main"]
+
+  # Servicio de Usuarios
+  user-service:
+    build: ./ms-users
+    container_name: user-service
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGODB_URI=mongodb+srv://bastian:25febrero@cluster0.u26nn.mongodb.net/Cluster0?retryWrites=true&w=majority
+      - USER_SERVICE_PORT=3001
+    networks:
+      - backend-services-network
+    command: ["node", "dist/main"]
+
+   # Servicio de Simulaciones
+  simulation-service:
+    build: ./ms-simulation
+    container_name: simulation-service
+    ports: 
+      - "3002:3002"
+    environment:
+      - MONGODB_URI=mongodb+srv://bastian:25febrero@cluster0.u26nn.mongodb.net/Cluster0?retryWrites=true&w=majority
+      - SIMULATION_SERVICE_PORT=3002
+    networks:
+      - backend-services-network
+    command: ["node", "dist/main"]
+
+  # Servicio Productor de Simulaciones
+  producer-service:
+    build: ./ms-producer
+    container_name: producer-service
+    ports:
+    - "3003:3003"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_URL=amqp://producer-service:producer-pass@rabbitmq:5672
+      - RABBITMQ_QUEUE=simulationqueue
+      - PRODUCER_SERVICE_PORT=3003
+      - SIMULATION_SERVICE=http://simulation-service:3002/ms-simulations/simulations
+    networks:
+      - backend-services-network
+  
+  consumer-service:
+    build: ./ms-consumer
+    container_name: consumer-service
+    user: root
+    ports:
+      - "3004:3004"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RABBITMQ_URL=amqp://consumer-service:consumer-pass@rabbitmq:5672
+      - CONSUMER_RABBITMQ_QUEUE=simulation_queue
+      - CONSUMER_SERVICE_PORT=3004
+      - MONGODB_URI=mongodb+srv://bastian:25febrero@cluster0.u26nn.mongodb.net/Cluster0?retryWrites=true&w=majority
+    networks:
+      - backend-services-network
+    volumes:
+      - ./services/consumer/simulation-files:/app/simulation-files  # Montar el directorio en Windows
+networks:
+  backend-services-network:
+    driver: bridge

@@ -1,8 +1,0 @@
-dist/
-node_modules
-.env
-.tmp
-logs/
-data/
-test-results.xml
-.vscode/settings.json
