@@ -1,0 +1,50 @@
+{
+    "vhosts": [
+      { "name": "/" }
+    ],
+    "users": [
+        {
+            "name": "admin-service",
+            "password_hash": "SdeXuBib+zNnsNg6M/lWxtVAjmOT7XgOMTXKJp0nmlhVF2Ah", 
+            "hashing_algorithm": "rabbit_password_hashing_sha256",  
+            "tags": "administrator"
+        },
+        {
+        "name": "consumer-service",
+        "password_hash": "whzN0aVQxZsTKRHEXqFkwpIfrvPWHKS90ffPvaxV4l7Fj4qA",
+        "hashing_algorithm":"rabbit_password_hashing_sha256",
+        "tags": "management"
+      },
+      
+      {
+        "name": "producer-service",
+        "password_hash": "8U96QXHsSzoLBoWGoE9d6AtXteVTZ8sKgvRBx7tWKNUEudTT",
+        "hashing_algorithm":"rabbit_password_hashing_sha256",
+        "tags": "management"
+      }
+    ],
+    "permissions": [
+        {
+            "user": "admin-service",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+          },
+        {
+            "user": "consumer-service",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "producer-service",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ]
+}
+  
