@@ -22,11 +22,18 @@ export const CanvanFlow = ({
   onEdgesChange,
 }: any) => {
 
+  // Procesa los nodos para asegurarse de que tengan los campos 'selected' y 'dragging'
+  const nodesWithDefaults = dataNodes.map((node: any) => ({
+    ...node,
+    selected: node.selected ?? false, // Valor por defecto: false
+    dragging: node.dragging ?? false, // Valor por defecto false
+
+  }));
 
   return (
     <div style={{ width: '100%', height: '600px' }}>
       <ReactFlow
-        nodes={dataNodes}
+        nodes={nodesWithDefaults}
         edges={dataEdges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}

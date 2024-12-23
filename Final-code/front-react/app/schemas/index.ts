@@ -3,6 +3,23 @@ import * as z from 'zod';
 const NODE_TYPES = ['S', 'B'];
 const GROUP_TYPES = ['0', '1', '2', '3'];
 
+export const cleanNodeData = (node: any) =>{
+  const cleanedNode= {...node};
+
+  // Eliminar campos innecesarios para nodos tipo 'S'
+  if (node.type === 'S'){
+    delete cleanedNode.numberOutputTweetsType;
+    delete cleanedNode.numberOutputTweetsValue;
+  }
+
+  if (node.type === 'B'){
+    delete cleanedNode.arrivalRateType;
+    delete cleanedNode.arrivalRateValue;
+  }
+  return cleanedNode;
+}
+
+// Esquema principal para validar nodos
 export const NodeSchema = z
   .object({
     name: z.string().min(3).max(50),
@@ -27,8 +44,12 @@ export const NodeSchema = z
     }),
     avgServiceTimeType: z.string().min(2),
     avgServiceTimeValue: z.string().min(2),
+
+    // Campos específicos para tipo 'S'
     arrivalRateType: z.string().optional(),
     arrivalRateValue: z.string().optional(),
+
+    // Campos específicos para tipo 'B'
     numberOutputTweetsType: z.string().optional(),
     numberOutputTweetsValue: z.string().optional(),
   })
@@ -45,6 +66,7 @@ export const NodeSchema = z
       } as any);
     }
 
+    // Validar campos obligatorios para nodos tipo 'B'
     if (data.type === 'B' && !data.numberOutputTweetsType) {
       ctx.addIssue({
         path: ['numberOutputTweetsType'],
@@ -57,7 +79,28 @@ export const NodeSchema = z
     }
   });
 
+// Esquema para crear simulaciones
 export const SimulationCreateSchema = z.object({
   name: z.string().min(3).max(50),
   description: z.string().min(3).max(50),
 });
+
+// Validar nodo antes de guardar
+export const validateNode = (node: any) => {
+  const cleanedNode = cleanNodeData(node);  // Limpiar campos innecesarios
+  return NodeSchema.parse(cleanedNode);     // Validar datos limpios
+};
+
+  // Validar conjunto de nodos
+export const validateSimulationData = (nodes: any[]) => {
+  return nodes.every((node) => {
+    if (node.type === 'S') {
+      return !node.numberOutputTweetsType && !node.numberOutputTweetsValue;
+    }
+    if (node.type === 'B') {
+      return !node.arrivalRateType && !node.arrivalRateValue;
+    }
+    return true;
+  });
+};
+

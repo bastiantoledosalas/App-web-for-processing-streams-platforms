@@ -11,6 +11,7 @@ export type User = {
   name: string;
   lastname: string;
   email: string;
+  password:string;
   role: 'admin' | 'user' | 'superuser'
 };
 

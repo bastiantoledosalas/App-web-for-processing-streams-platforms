@@ -9,6 +9,8 @@ import {
   useReactTable,
   ColumnFiltersState,
   getFilteredRowModel,
+  PaginationState,
+  getPaginationRowModel,
 } from '@tanstack/react-table';
 
 import {
@@ -21,7 +23,8 @@ import {
 } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,9 +36,11 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageSize: 5,
+    pageIndex:0,
+  });
 
   const table = useReactTable({
     data,
@@ -45,11 +50,20 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onPaginationChange: setPagination,
     state: {
       sorting,
+      pagination,
       columnFilters,
     },
   });
+
+  // Generar los botones enumerados
+  const pageNumbers = Array.from(
+    { length: table.getPageCount()},
+    (_,i) => i + 1
+  );
 
   return (
     <div className="rounded-md border">
@@ -107,6 +121,53 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
+      <div className="flex items-center justify-between p-4">
+        {/* Selector de número de filas */}
+        <div className="flex items-center gap-2">
+          <span>Filas por página:</span>
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => table.setPageSize(Number(e.target.value))}
+            className="border rounded p-1"
+          >
+            {[5, 10, 20].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
+        {/* Paginación numerada */}
+        <div className="flex items-center gap-1">
+          <Button
+            variant="outline"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Anterior
+          </Button>
+          {pageNumbers.map((page, index) => {
+            const isCurrentPage =
+              table.getState().pagination.pageIndex === index;
+            return (
+              <Button
+                key={page}
+                variant={isCurrentPage ? 'solid' : 'outline'}
+                onClick={() => table.setPageIndex(index)}
+              >
+                {page}
+              </Button>
+            );
+          })}
+          <Button
+            variant="outline"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Siguiente
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

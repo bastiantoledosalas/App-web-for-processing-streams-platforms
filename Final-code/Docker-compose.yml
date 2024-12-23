@@ -42,7 +42,7 @@ services:
       - JWT_SECRET=secret
       - USERS_SERVICE_URL=http://user-service:3001/ms-user
       - SIMULATIONS_SERVICE_URL=http://simulation-service:3002/ms-simulation
-      - SIMULATE_START_URL=http//producers-service:3003/producer
+      - PRODUCER_SERVICE_URL=http://producer-service:3003/ms-producer/producer
     networks:
       - backend-services-network
     command: ["node", "dist/main"]
@@ -86,7 +86,7 @@ services:
       - RABBITMQ_URL=amqp://producer-service:producer-pass@rabbitmq:5672
       - RABBITMQ_QUEUE=simulationqueue
       - PRODUCER_SERVICE_PORT=3003
-      - SIMULATION_SERVICE=http://simulation-service:3002/ms-simulations/simulations
+      - SIMULATION_SERVICE=http://simulation-service:3002/ms-simulation/simulations
     networks:
       - backend-services-network
   
@@ -107,7 +107,7 @@ services:
     networks:
       - backend-services-network
     volumes:
-      - ./services/consumer/simulation-files:/app/simulation-files  # Montar el directorio en Windows
+      - ./ms-consumer/simulation-files:/app/simulation-files 
 networks:
   backend-services-network:
     driver: bridge

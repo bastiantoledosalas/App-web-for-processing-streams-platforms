@@ -12,7 +12,7 @@ const SimulationsPage = () => {
   return (
     <div>
       <HeaderPage
-        title="Simulations"
+        title="Gestión de Simulaciones"
         description="Listado de simulaciones"
         actions={
           <Button onClick={() => router.push('/admin/simulator')}>

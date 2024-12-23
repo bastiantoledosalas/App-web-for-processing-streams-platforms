@@ -22,6 +22,7 @@ export class ProducerController {
     @Body('simulationData')       simulationData    : ValidatedSimulationDto,
     @Body ('startSimulationDto')  startSimulationDto: SimulationStartDto)
     {
+    console.log('SE RECIBIO UNA PETICION');
     return this.producerService.startSimulation(simulationData, startSimulationDto);
     }
 }

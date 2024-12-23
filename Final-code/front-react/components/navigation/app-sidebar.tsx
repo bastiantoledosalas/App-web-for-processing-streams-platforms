@@ -13,45 +13,39 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,         // Contiene los elementos del menú
-  DropdownMenuTrigger,      // Botón para abrir el menú
-} from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 const items = [
   {
     title: 'Simulador',       // Título del enlace
     url: '/admin/simulator',  // URL de navegación
     icon: Workflow,           // Ícono que se muestra
+    roles: ['admin', 'user']
   },
   {
     title: 'Simulaciones',
     url: '/admin/simulations',
     icon: ListTree,
+    roles:['admin','user']
   },
   {
     title: 'Usuarios',
     url: '/admin/users',
     icon: Users,
-  },
-
-  {
-    title: 'Configuraciones',
-    url: '/admin/settings',
-    icon: Settings,
+    roles:['admin']
   },
 ];
 
 export const AppSidebar = () => {
   const { data: session } = useSession();
   if (!session) return null;
+
+  const role = session.user?.role;
+  const filteredItems = items.filter((item) => item.roles.includes(role)); // Filtra correctamente
+
   return (
     <Sidebar>
       <SidebarHeader className="p-4">
@@ -70,11 +64,11 @@ export const AppSidebar = () => {
           <SidebarGroupLabel>Sistema de simulaciones</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {filteredItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
-                      <item.icon />
+                      <item.icon className='mr-2'/>
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -84,47 +78,6 @@ export const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  {session.user?.name && (
-                    <Image
-                      src={`https://ui-avatars.com/api/?name=${session.user?.name}`}
-                      width={24}
-                      height={24}
-                      className="rounded-full"
-                      alt="avatar"
-                    />
-                  )}
-                  {session.user?.name}
-                  <ChevronUp className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                side="top"
-                className="w-[--radix-popper-anchor-width]"
-              >
-                <DropdownMenuItem>
-                  <span>Perfil</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Simulaciones</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    signOut();
-                  }}
-                >
-                  <span>Cerrar sesión</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
     </Sidebar>
   );
 };

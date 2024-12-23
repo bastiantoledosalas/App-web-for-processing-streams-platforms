@@ -1,4 +1,6 @@
-import React, { use, useEffect } from 'react';
+
+"use client"
+import React, { use, useEffect, useState } from 'react';
 import {
   AlertDialog,
   AlertDialogContent,
@@ -31,6 +33,8 @@ import { Button } from '../ui/button';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface ModalFlowProps {
   simulation: any;
@@ -45,6 +49,7 @@ interface ModalFlowProps {
   action: string;
 }
 
+
 const ModalFlow = ({
   simulation,
   open,
@@ -53,14 +58,57 @@ const ModalFlow = ({
   onSaved,
   action,
 }: ModalFlowProps) => {
+  const { data: session } = useSession();
+  const router = useRouter();
+  const [nodes, setNodes] = useState<any[]>([]);
+  const [edges, setEdges] = useState<any[]>([]);
   const form = useForm<z.infer<typeof SimulationCreateSchema>>({
     resolver: zodResolver(SimulationCreateSchema),
     defaultValues: initialData,
   });
 
   useEffect(() => {
-    form.reset(initialData);
-  }, [initialData]);
+    if (action === 'edit' && initialData.id) {
+      // Cargar la simulación para editar
+      const fetchSimulationData = async () => {
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            throw new Error('Token no encontrado');
+          }
+
+          const response = await fetch(`http://localhost:3000/api/simulations/${initialData.id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+            credentials: 'include',
+          });
+
+          if (!response.ok) {
+            throw new Error('Error al cargar la simulación');
+          }
+
+          const dataResponse = await response.json();
+
+          // Cargar los datos del formulario
+          form.reset({
+            name: dataResponse.name,
+            description: dataResponse.description,
+          });
+
+          // Suponiendo que los datos de la simulación incluyen nodos y bordes
+          setNodes(dataResponse.nodes || []);
+          setEdges(dataResponse.edges || []);
+        } catch (error) {
+          console.error('Error al cargar los datos de la simulación:', error);
+        }
+      };
+
+      fetchSimulationData();
+    }
+  }, [action, initialData.id, form]);
 
   const onSubmit = (data: z.infer<typeof SimulationCreateSchema>) => {
     const newDataRequest = {
@@ -74,35 +122,64 @@ const ModalFlow = ({
   const onSaveToApi = async ({ data }: any) => {
     try {
       delete data.id;
+
+      // Obtener el token y correo del usuario
+      const token = localStorage.getItem('token');
+
+      if (!token || !session?.user || !session?.user.email){
+        throw new Error('token o correo no encontrado');
+      }
+
+      const newDataRequest={
+        ...data,
+        user:session.user.email,
+      }
+
+      let response;
       if (action === 'create') {
-        const response = await fetch('http://simulations-service:3002/ms-simulations/simulations', {
+        response = await fetch('http://localhost:3000/api/simulations', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(newDataRequest),
+          credentials: 'include',
         });
-        const dataResponse = await response.json();
+
+        if(!response.ok){
+          const errorDetails = await response.text();
+          throw new Error(`Error: ${response.status}, Detalles: ${errorDetails}`);
+        }
+
+        toast.success('Simulación guardada correctamente');
       } else {
         const response = await fetch(
-          `http://bff:3000/api/simulations/${initialData.id}`,
+          `http://localhost:3000/api/simulations/${initialData.id}`,
           {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(newDataRequest),
+            credentials: 'include',
           },
         );
+        if (!response.ok){
+          throw new Error('Error al actualizar la simulación');
+        }
         const dataResponse = await response.json();
+        toast.success('Simulación actualizada correctamente');
       }
-
-      toast.success('Simulación guardada correctamente');
+      // Cerrar modal y ejecutar función onSave()
       setOpen(false);
       onSaved();
+      router.push('/admin'); // Redirige a la página /admin
+
     } catch (error) {
       console.log({ error });
-      toast.error('Error al guardar la simulación');
+      toast.error('Error al guardar o actualizar la simulación');
     }
   };
 
@@ -138,7 +215,6 @@ const ModalFlow = ({
                   <FormControl>
                     <Input {...field} autoComplete="off" />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
