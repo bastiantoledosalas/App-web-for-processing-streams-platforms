@@ -90,6 +90,7 @@ services:
     networks:
       - backend-services-network
   
+  # Servicio Consumidor de Simulaciones
   consumer-service:
     build: ./ms-consumer
     container_name: consumer-service
@@ -101,7 +102,7 @@ services:
         condition: service_healthy
     environment:
       - RABBITMQ_URL=amqp://consumer-service:consumer-pass@rabbitmq:5672
-      - CONSUMER_RABBITMQ_QUEUE=simulation_queue
+      - RABBITMQ_QUEUE=simulationqueue
       - CONSUMER_SERVICE_PORT=3004
       - MONGODB_URI=mongodb+srv://bastian:25febrero@cluster0.u26nn.mongodb.net/Cluster0?retryWrites=true&w=majority
     networks:
