@@ -1,57 +1,64 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Put,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { SimulationsService } from './simulations.service';
 import { CreateSimulationDto } from './dto/create-simulation.dto';
 import { UpdateSimulationDto } from './dto/update-simulation.dto';
 import { Simulation } from './entities/simulation.entity';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 
+@ApiTags('Simulations')
 @Controller('simulations')
 export class SimulationsController {
   constructor(private readonly simulationsService: SimulationsService) {}
 
-  // Endpoint para crear una simulación y se enlaza el id del usuario que la crea
+  @ApiOperation({ summary: 'Crear una nueva simulación' })
+  @ApiResponse({ status: 201, description: 'Simulación creada correctamente', type: Simulation })
   @Post()
   async create(
     @Body() createSimulationDto: CreateSimulationDto) {
     return this.simulationsService.create(createSimulationDto);
   }
 
-  // Endpoint para obtener todas las simulaciones
+  @ApiOperation({ summary: 'Obtener todas las simulaciones' })
+  @ApiResponse({ status: 200, description: 'Listado de todas las simulaciones', type: [Simulation] })
   @Get('all')
   async findAllSimulations(): Promise <Simulation[]>{
     return this.simulationsService.findAllSimulations();
   }
-  // Endpoint para obtener una simulación por su id
+  
+  @ApiOperation({ summary: 'Obtener una simulación por su id' })
+  @ApiParam({ name: 'id', description: 'ID de la simulación', type: String })
+  @ApiResponse({ status: 200, description: 'Simulación encontrada', type: Simulation })
+  @ApiResponse({ status: 404, description: 'Simulación no encontrada' })
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Simulation> {
     return this.simulationsService.findOne(id);
   }
 
-  // Endpoint para actualizar los datos de una simulación antes de mandarla a simular
+  
+  @ApiOperation({ summary: 'Actualizar los datos de una simulación' })
+  @ApiParam({ name: 'id', description: 'ID de la simulación', type: String })
+  @ApiResponse({ status: 200, description: 'Simulación actualizada', type: Simulation })
+  @ApiResponse({ status: 404, description: 'Simulación no encontrada' })
   @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() updateSimulationDto: UpdateSimulationDto,
-  ) {
+  ): Promise<Simulation> {
     return this.simulationsService.update(id, updateSimulationDto);
   }
 
-  // Endpoint para eliminar una simulación 
+  @ApiOperation({ summary: 'Eliminar una simulación' })
+  @ApiParam({ name: 'id', description: 'ID de la simulación a eliminar', type: String })
+  @ApiResponse({ status: 200, description: 'Simulación eliminada correctamente' })
+  @ApiResponse({ status: 404, description: 'Simulación no encontrada' })
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return this.simulationsService.remove(id);
   }
 
-  // Endpoint para actualizar el estado de una simulación
+  @ApiOperation({ summary: 'Actualizar el estado de una simulación' })
+  @ApiParam({ name: 'id', description: 'ID de la simulación', type: String })
+  @ApiResponse({ status: 200, description: 'Estado de la simulación actualizado' })
   @Patch(':id/status')
   async updateSimulationStatus(
     @Param('id')  id          : string,
@@ -60,14 +67,18 @@ export class SimulationsController {
     return this.simulationsService.updateSimulationStatus(id, newStatus);
   }
 
-   // Endpoint para obtener todas las simulaciones de un usuario
-   @Get(':email')
-   async findAll(@Param('email') email: string) {
-     return this.simulationsService.findByUser(email);
+  @ApiOperation({ summary: 'Obtener todas las simulaciones de un usuario' })
+  @ApiParam({ name: 'email', description: 'Correo electrónico del usuario', type: String })
+  @ApiResponse({ status: 200, description: 'Listado de simulaciones del usuario', type: [Simulation] })
+  @Get(':email')
+  async findAll(@Param('email') email: string) {
+    return this.simulationsService.findByUser(email);
    }
  
 
-  // Endpoint para actualizar los resultados de una simulación
+  @ApiOperation({ summary: 'Actualizar los resultados de una simulación' })
+  @ApiParam({ name: 'id', description: 'ID de la simulación', type: String })
+  @ApiResponse({ status: 200, description: 'Resultados de la simulación actualizados' })
   @Patch(':id/results')
   async updateResults(
     @Param('id') id : string,
@@ -75,7 +86,5 @@ export class SimulationsController {
   ): Promise<any>{
     console.log('Received results for simulation:',results);
     return this.simulationsService.updateSimulationResults(id, results);
-  } 
-
-   
+  }  
 }

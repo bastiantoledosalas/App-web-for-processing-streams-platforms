@@ -1,27 +1,35 @@
-# Usa una imagen con glibc >= 2.29
-FROM debian:bullseye-slim
+# Etapa de construcción
+FROM node:16-alpine AS builder
 
-# Instala Node.js manualmente
-RUN apt-get update && apt-get install -y \
-    curl \
-    && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y nodejs \
-    && apt-get clean
-
-# Establece el directorio de trabajo en /app
 WORKDIR /app
 
-# Copia los archivos package.json y package-lock.json
+# Copia los archivos necesarios para instalar dependencias
 COPY package*.json ./
 
-# Instala las dependencias
+# Instala las dependencias del proyecto, incluyendo devDependencies
 RUN npm install
+
+# Instala la CLI de NestJS temporalmente en el entorno del builder
+RUN npm install -g @nestjs/cli
 
 # Copia el resto del código
 COPY . .
 
-# Expone el puerto 3005
-EXPOSE 3005
+# Compila el proyecto
+RUN npm run build
 
-# Comando para correr la aplicación
-CMD ["npm", "run", "start:dev"]
+# Etapa de Ejecución
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist   ./dist
+RUN npm install --only=production --silent
+
+# Expone el puerto 3004
+EXPOSE 3004
+
+# Ejecutar el servicio en producción
+CMD ["node", "dist/main"]

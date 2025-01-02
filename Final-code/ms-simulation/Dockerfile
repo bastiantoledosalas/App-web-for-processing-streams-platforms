@@ -28,8 +28,8 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/dist   ./dist
 RUN npm install --only=production --silent
 
-# Expone el puerto 3003
-EXPOSE 3003
+# Expone el puerto 3002
+EXPOSE 3002
 
 # Comando para correr la aplicación
-CMD ["NODE", "dist/main"]
+CMD ["node", "dist/main"]

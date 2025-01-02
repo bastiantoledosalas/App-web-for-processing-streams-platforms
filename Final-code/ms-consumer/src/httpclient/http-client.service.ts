@@ -61,7 +61,7 @@ export class HttpClientService {
 
 
   // Método para agregar resultados a una simulación
-  async sendSimulationResults(simulationId: string, newResults: any): Promise<void> {
+  async sendSimulationResults(simulationId: string, results: any): Promise<void> {
     if(!simulationId){
         this.logger.error(`Invalid simulationId: ${simulationId}`);
 
@@ -72,11 +72,11 @@ export class HttpClientService {
     }
 
     // Log para verificar el contexto de los resultados antes de enviarlos
-    this.logger.log(`Sending results to simulation with ID ${simulationId}: ${JSON.stringify(newResults, null, 2)}`);
+    this.logger.log(`Sending results to simulation with ID ${simulationId}: ${JSON.stringify(results, null, 2)}`);
     const url = `${process.env.SIMULATION_SERVICE}/${simulationId}/results`;
     try {
         // pasamos directamente el objeto results sin convertirlo a JSON
-        const response = await lastValueFrom(this.httpService.patch(url, {results: newResults}));
+        const response = await lastValueFrom(this.httpService.patch(url, {results}));
 
         if (response.status === 200){
             this.logger.log(`Results successfully added for simulation ${simulationId}`);

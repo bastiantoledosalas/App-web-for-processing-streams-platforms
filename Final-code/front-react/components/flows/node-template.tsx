@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card} from '../ui/card';
 import { Handle, Position } from '@xyflow/react';
+import { cleanNodeData } from '@/app/schemas';
+
+
 
 const FeatureItemInline = ({ feature }: any) => {
   return (
@@ -25,40 +28,42 @@ interface NodeTemplateProps {
 }
 
 export const NodeTemplate = ({ data }: NodeTemplateProps) => {
+  // Limpiar los datos antes de usarlos
+  const cleanedData = cleanNodeData(data);
   return (
     <Card className="w-80">
       <div
         className={`${
-          data.type === 'B' ? 'bg-bolt' : 'bg-spout'
+          cleanedData.type === 'B' ? 'bg-bolt' : 'bg-spout'
         } p-3 mb-1 rounded-md mx-2 my-2 font-bold text-center`}
       >
-        {data.name} <small>({data.type === 'S' ? 'Spout' : 'Bolt'})</small>
+        {cleanedData.name} <small>({cleanedData.type === 'S' ? 'Spout' : 'Bolt'})</small>
       </div>
 
       <FeatureItemInline
-        feature={{ label: 'Replicas', value: data.replicationLevel }}
+        feature={{ label: 'Replicas', value: cleanedData.replicationLevel }}
       />
       <FeatureItemInline
-        feature={{ label: 'Agrupamiento', value: data.groupType }}
+        feature={{ label: 'Agrupamiento', value: cleanedData.groupType }}
       />
       <FeatureItemInline
-        feature={{ label: 'Procesador', value: data.processor }}
+        feature={{ label: 'Procesador', value: cleanedData.processor }}
       />
       <FeatureItem
         feature={{
           label: 'Tiempo Promedio Servicio',
-          value: data.avgServiceTimeValue,
+          value: cleanedData.avgServiceTimeValue,
         }}
       />
       {data.type === 'S' ? (
         <FeatureItem
-          feature={{ label: 'Tasa de Arribo', value: data.arrivalRateValue }}
+          feature={{ label: 'Tasa de Arribo', value: cleanedData.arrivalRateValue }}
         />
       ) : (
         <FeatureItem
           feature={{
             label: 'Número de Tweets de Salida',
-            value: data.numberOutputTweetsValue,
+            value: cleanedData.numberOutputTweetsValue,
           }}
         />
       )}
@@ -66,9 +71,9 @@ export const NodeTemplate = ({ data }: NodeTemplateProps) => {
       <Handle
         type="target"
         position={Position.Left}
-        isConnectable={data.type === 'B'}
+        isConnectable={cleanedData.type === 'B'}
         className={`${
-          data.type === 'B' ? '!bg-slate-400 !w-4 !h-4' : 'hidden'
+          cleanedData.type === 'B' ? '!bg-slate-400 !w-4 !h-4' : 'hidden'
         }`}
       />
       <Handle

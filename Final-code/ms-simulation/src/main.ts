@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function startApp(app:any, port: number, logger: Logger): Promise<void>{
   try {
@@ -28,6 +29,18 @@ function configureGlobalSettings(app: any): void {
   app.enableCors();                     // Habilita CORS para toda la aplicación
   app.setGlobalPrefix('ms-simulation') // Prefijo global para las rutas
 }
+
+function setupSwagger(app: any): void {
+  const config = new DocumentBuilder()
+    .setTitle('Simulations Service API')
+    .setDescription('API documentation for the Simulation Service')
+    .setVersion('1.0')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+}
+
 async function gracefulShutdown(app: any, logger: Logger): Promise<void> {
   process.on('SIGINT', async () => {
     logger.log('SIGINT signal received. shutting down gracefully');
@@ -59,6 +72,9 @@ async function bootstrap() {
   // Configuración global de validación
   configureValidation(app);
 
+  // Configuración de Swagger
+  setupSwagger(app);
+  
   // Iniciar la aplicación
   await startApp(app, port, logger);
 

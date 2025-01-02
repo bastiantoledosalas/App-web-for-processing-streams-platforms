@@ -1,14 +1,15 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory }    from '@nestjs/core';
+import { AppModule }      from './app.module';
+import { ConfigService }  from '@nestjs/config';
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function startApp(app:any, port: number, logger: Logger): Promise<void>{
   try {
       await app.listen(port);
       logger.log(`Users Service is running on: ${port}`);
     } catch (error) {
-      logger.error('Error starting Users Service', error.stack);
+      logger.error('Error starting Users Service', { error });
       process.exit(1);
   }
 }
@@ -28,6 +29,18 @@ function configureGlobalSettings(app: any): void {
   app.enableCors();                     // Habilita CORS para toda la aplicación
   app.setGlobalPrefix('ms-user')       // Prefijo global para las rutas
 }
+
+function setupSwagger(app: any): void {
+  const config = new DocumentBuilder()
+    .setTitle('Users Service API')
+    .setDescription('API documentation for the Users Service')
+    .setVersion('1.0')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document); // Documentación disponible en /api
+}
+
 async function gracefulShutdown(app: any, logger: Logger): Promise<void> {
   process.on('SIGINT', async () => {
     logger.log('SIGINT signal received. shutting down gracefully');
@@ -49,8 +62,7 @@ async function bootstrap() {
   const port          = configService.get<number>('USER_SERVICE_PORT');
 
   if (!port){
-    logger.error('USER_SERVICE_PORT is not defined in the environment');
-    process.exit(1);
+    throw new Error('USER_SERVICE_PORT is not defined in the environment');
   }
   
   // Configuración global de la aplicación
@@ -58,6 +70,9 @@ async function bootstrap() {
   
   // Configuración global de validación
   configureValidation(app);
+
+  // Configuración de Swagger
+  setupSwagger(app);
 
   // Iniciar la aplicación
   await startApp(app, port, logger);

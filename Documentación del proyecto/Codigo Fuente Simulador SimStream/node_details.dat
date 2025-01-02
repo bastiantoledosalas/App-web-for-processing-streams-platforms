@@ -1,0 +1,3 @@
+#Node_Name   Type    Replication     Grouping   Processor   AvgServiceTime(STRING)   Arrival Rate(STRING)
+Nodo1 S 1 1 10.2.2.1 fixed(2.3) expon(-1.0389139971820532e-11,0.024674476149550005)
+Nodo2 B 1 1 10.2.2.1 fixed(1.0) fixed(1.0)

@@ -116,6 +116,7 @@ export class ProducerService {
   // Método para actualizar el estado de la simulación
   async updateSimulationStatus(simulationId: string, newStatus: SimulationStatus ): Promise<void>{
     const url = `${process.env.SIMULATION_SERVICE}/${simulationId}/status`;
+    console.log('URL:',url);
     
     if (!url) {
       throw new HttpException('Error en la configuración de la url para conectar al servicio de simulaciones', HttpStatus.INTERNAL_SERVER_ERROR);

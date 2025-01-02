@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import { Model } from 'mongoose';
 
 import { CreateSimulationDto } from './dto/create-simulation.dto';
 import { UpdateSimulationDto } from './dto/update-simulation.dto';
@@ -119,7 +119,6 @@ export class SimulationsService {
       console.log('Simulation:', JSON.stringify(simulation.results, null, 2));
       await simulation.save();
 
-       // Log de éxito
        this.logger.log(`Simulation ${simulationId} results updated`);
     } catch (error){
       
@@ -129,5 +128,4 @@ export class SimulationsService {
       )
     }
   }
-
 }

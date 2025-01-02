@@ -1,0 +1,89 @@
+n_procs value:1
+K value:2
+cant_core_sw value:1
+cant_aggr_sw:2
+cant_edge_sw value:2
+cant_pods value:2
+cant_hosts value:2
+cant_hosts_pod value:1
+Fat tree current_pod value:0
+Fat tree current_sw value:0
+Fat tree current_pod value:1
+Fat tree current_sw value:0
+Nodos que no son origen de ningún otro nodo:
+Nodo que no es origen: SentimentAnalysisToCassandra
+Nodo que no es origen: TopHashtagToCassandra
+SERVICE_TIME TwitterFilter_0 0.000994328
+Distribution: nbinom(1,0.26063,0.0,1.0)
+NUMBER_OF_TUPLES TwitterFilter_0 0
+SERVICE_TIME TwitterFilter_0 0.000220034
+Distribution: nbinom(1,0.26063,0.0,1.0)
+NUMBER_OF_TUPLES TwitterFilter_0 0
+SERVICE_TIME TwitterFilter_0 3.93687e-05
+Distribution: nbinom(1,0.26063,0.0,1.0)
+NUMBER_OF_TUPLES TwitterFilter_0 0
+PROCESSOR: Proc_10.0.0.2 in_use: 0.00125374 - average memory=850 - max memory=1900 -- accs=12 -- cumm=10200
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_6 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_7 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_8 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_9 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_10 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_11 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_12 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_13 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_14 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_15 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_16 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_17 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_18 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_19 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_20 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_21 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_22 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_23 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_24 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_25 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_26 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_27 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_28 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_29 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_30 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_31 time_in_use: 0 total_time: 0.0582035 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_0 time_in_use: 1e-09 total_time: 0.0582035 utilization: 1.71811e-08
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_1 time_in_use: 0.000994329 total_time: 0.0582035 utilization: 0.0170837
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_2 time_in_use: 1e-09 total_time: 0.0582035 utilization: 1.71811e-08
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_3 time_in_use: 0.000220035 total_time: 0.0582035 utilization: 0.00378044
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_4 time_in_use: 1e-09 total_time: 0.0582035 utilization: 1.71811e-08
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_5 time_in_use: 3.93697e-05 total_time: 0.0582035 utilization: 0.000676415
+PROCESSOR utilization: 0.000673143
+
+NODE: HashtagCounter_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+	 utilization:0 throughput:0 replicas:1
+
+NODE: HashtagSplitter_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+	 utilization:0 throughput:0 replicas:1
+
+NODE: KafkaSpout_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:51.5433 avg_resp_time:0 tuples: 3 replica: 0
+	 utilization:0 throughput:51.5433 replicas:1
+
+NODE: SentimentAnalysis_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+	 utilization:0 throughput:0 replicas:1
+
+NODE: SentimentAnalysisToCassandra_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+	 utilization:0 throughput:0 replicas:1
+
+NODE: TextSanitization_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+	 utilization:0 throughput:0 replicas:1
+
+NODE: TopHashtag_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+	 utilization:0 throughput:0 replicas:1
+
+NODE: TopHashtagToCassandra_0 use_time: 0 total_time:0.0582035 utilization:0 throughput:0 avg_resp_time:-nan tuples: 0 replica: 0
+	 utilization:0 throughput:0 replicas:1
+
+NODE: TwitterFilter_0 use_time: 0.00125373 total_time:0.0582035 utilization:0.0215405 throughput:51.5433 avg_resp_time:0.00041791 tuples: 3 replica: 0
+	 utilization:0.0215405 throughput:51.5433 replicas:1
+
+	 tuples generated:2 tuples processed:0 throughput topology:0 average tuple response time:inf total simulation time:0.0582035
+
+

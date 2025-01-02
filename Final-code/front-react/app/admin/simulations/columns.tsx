@@ -1,11 +1,13 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-
+import { downloadExcel } from '@/lib/excel-utils';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import dayjs from 'dayjs';
+import React from 'react';
+import { SimulationData } from '@/lib/types/simulation';
 
 export type Simulation = {
   _id?: string;
@@ -18,12 +20,51 @@ export type Simulation = {
     | 'updated'
     | 'pending'
     | 'processing'
-    | 'success'
+    | 'completed'
     | 'failed';
   createdAt: string;
 };
 
-// Cantidad de parejas
+const SortingButton = ({ column, children }: { column: any; children: React.ReactNode }) => (
+  <Button variant="ghost" onClick={() => column.toggleSorting()}>
+    {children}
+    <ArrowUpDown className="ml-2 h-4 w-4" />
+  </Button>
+);
+
+const handleDownloadExcel = async (simulationId: string) => {
+  try {
+    const token = localStorage.getItem('token');
+    console.log('SimulationID:',simulationId);
+    // Hacer la solicitud para obtener los resultados
+    const response = await fetch(`http://localhost:3000/api/simulations/${simulationId}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        credentials: 'include',
+        })
+
+    if (!response.ok) {
+      throw new Error('Error al obtener los resultados');
+    }
+
+    const resultData: SimulationData = await response.json();
+    console.log('RESULTDATA',resultData);
+
+    // Verificar si tenemos resultados
+    if (!resultData.results || resultData.results.length === 0) {
+      throw new Error('No se encontraron resultados para la simulación');
+    }
+
+    // Generar y descargar el archivo Excel
+    downloadExcel(resultData);
+  } catch (error) {
+    console.error('Error al descargar los resultados en Excel:', error);
+  }
+};
 
 export const columns: ColumnDef<Simulation>[] = [
   {
@@ -112,7 +153,7 @@ export const columns: ColumnDef<Simulation>[] = [
               ? 'pending'
               : simulation.status === 'processing'
               ? 'default'
-              : simulation.status === 'success'
+              : simulation.status === 'completed'
               ? 'success'
               : 'destructive'
           }
@@ -127,14 +168,18 @@ export const columns: ColumnDef<Simulation>[] = [
     cell: ({ row }) => {
       const simulation = row.original;
 
-      if (simulation.status !== 'success') {
+      if (simulation.status !== 'completed') {
         return '--';
       }
       return (
-        <Button variant={'outline'} size={'sm'}>
-          Descargar
-        </Button>
-      );
-    },
+        <Button
+        variant="outline"
+        size="sm"
+        onClick={() => handleDownloadExcel(simulation._id!)}
+      >
+        Descargar Resultados
+      </Button>
+    );
   },
+},
 ];

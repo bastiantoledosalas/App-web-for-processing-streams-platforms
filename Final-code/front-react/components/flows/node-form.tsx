@@ -113,10 +113,13 @@ export const NodeForm = ({ onSubmitData }: NodeFormProps) => {
   const type = form.watch('type');
 
   useEffect(() => {
-    form.setValue('arrivalRateType', '');
-    form.setValue('arrivalRateValue', '');
-    form.setValue('numberOutputTweetsType', '');
-    form.setValue('numberOutputTweetsValue', '');
+    if (type === 'S'){
+      form.setValue('numberOutputTweetsType',undefined);
+      form.setValue('numberOutputTweetsValue', undefined);
+    } else if (type === 'B'){
+      form.setValue('arrivalRateType',undefined);
+      form.setValue('arrivalRateValue',undefined);
+    }
   }, [type]);
 
   const handleFileReadAvgServiceTime = (data: any) => {
@@ -127,10 +130,32 @@ export const NodeForm = ({ onSubmitData }: NodeFormProps) => {
     form.setValue('arrivalRateValue', data);
   };
 
-
-
   const onSubmit = (data: z.infer<typeof NodeSchema>) => {
-    onSubmitData(data);
+    const filteredData = {...data};
+
+    if (type === 'S'){
+
+      if (filteredData.avgServiceTimeType){
+        filteredData.avgServiceTimeValue = `fixed(${filteredData.avgServiceTimeValue})`;
+      }
+      if (filteredData.arrivalRateValue) {
+        filteredData.arrivalRateValue = `fixed(${filteredData.arrivalRateValue})`;
+      }
+      // Eliminar valores relacionados con 'B'
+      delete filteredData.numberOutputTweetsType;
+      delete filteredData.numberOutputTweetsValue;
+
+    } else if (type === 'B') {
+      if (filteredData.numberOutputTweetsValue) {
+        filteredData.numberOutputTweetsValue = `fixed(${filteredData.numberOutputTweetsValue})`;
+      }
+      if (filteredData.avgServiceTimeType){
+        filteredData.avgServiceTimeValue = `fixed(${filteredData.avgServiceTimeValue})`;
+      }
+      delete filteredData.arrivalRateType;
+      delete filteredData.arrivalRateValue;
+    }
+    onSubmitData(filteredData);
     form.reset(INITIAL_VALUES);
     // emite un toast de éxito
   };

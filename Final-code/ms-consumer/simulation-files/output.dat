@@ -1,88 +1,107 @@
-ARRIVAL_RATE 5.793
-ARRIVAL_RATE 6.28476
-ARRIVAL_RATE 7.01202
-SERVICE_TIME Nodo2_0 2
-NUMBER_OF_TUPLES Nodo2_0 23
-SERVICE_TIME Nodo2_0 2
-NUMBER_OF_TUPLES Nodo2_0 23
-SERVICE_TIME Nodo2_0 2
-NUMBER_OF_TUPLES Nodo2_0 23
-PROCESSOR: Proc_10.2.0.2 in_use: 6 - average memory=850 - max memory=1100 -- accs=4 -- cumm=3400
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_3 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_4 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_5 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_6 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_7 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_8 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_9 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_10 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_11 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_12 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_13 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_14 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_15 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_16 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_17 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_18 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_19 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_20 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_21 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_22 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_23 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_24 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_25 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_26 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_27 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_28 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_29 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_30 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_31 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_0 time_in_use: 2 total_time: 307.793 utilization: 0.00649787
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_1 time_in_use: 2 total_time: 307.793 utilization: 0.00649787
-PROCESSOR: Proc_10.2.0.2 - CORE: Core_2 time_in_use: 2 total_time: 307.793 utilization: 0.00649787
-PROCESSOR utilization: 0.000609176
+ARRIVAL_RATE 4
+ARRIVAL_RATE 4
+ARRIVAL_RATE 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+ARRIVAL_RATE 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+SERVICE_TIME asdasdasdasdasd_0 4
+NUMBER_OF_TUPLES asdasdasdasdasd_0 4
+PROCESSOR: Proc_10.0.0.2 in_use: 168 - average memory=1978 - max memory=2200 -- accs=23 -- cumm=45500
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_12 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_13 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_14 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_15 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_16 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_17 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_18 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_19 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_20 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_21 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_22 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_23 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_24 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_25 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_26 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_27 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_28 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_29 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_30 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_31 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_0 time_in_use: 84 total_time: 92 utilization: 0.913043
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_1 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_2 time_in_use: 84 total_time: 92 utilization: 0.913043
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_3 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_4 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_5 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_6 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_7 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_8 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_9 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_10 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR: Proc_10.0.0.2 - CORE: Core_11 time_in_use: 0 total_time: 92 utilization: 0
+PROCESSOR utilization: 0.0570652
 
-PROCESSOR: Proc_10.2.1.2 in_use: 300 - average memory=100 - max memory=100 -- accs=1 -- cumm=100
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_3 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_4 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_5 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_6 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_7 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_8 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_9 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_10 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_11 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_12 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_13 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_14 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_15 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_16 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_17 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_18 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_19 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_20 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_21 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_22 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_23 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_24 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_25 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_26 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_27 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_28 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_29 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_30 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_31 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_0 time_in_use: 300 total_time: 307.793 utilization: 0.974681
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_1 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR: Proc_10.2.1.2 - CORE: Core_2 time_in_use: 0 total_time: 307.793 utilization: 0
-PROCESSOR utilization: 0.031068
+NODE: asdasdasdasd_0 use_time: 84 total_time:92 utilization:0.913043 throughput:0.228261 avg_resp_time:4 tuples: 21 replica: 0
+utilization:0.913043 throughput:0.228261 replicas:1
 
-NODE: Nodo1_0 use_time: 300 total_time:307.793 utilization:0.974681 throughput:0.00974681 avg_resp_time:100 tuples: 3 replica: 0
-utilization:0.974681 throughput:0.00974681 replicas:1
+NODE: asdasdasdasdasd_0 use_time: 84 total_time:92 utilization:0.913043 throughput:0.228261 avg_resp_time:4 tuples: 21 replica: 0
+utilization:0.913043 throughput:0.228261 replicas:1
 
-NODE: Nodo2_0 use_time: 6 total_time:307.793 utilization:0.0194936 throughput:0.00974681 avg_resp_time:2 tuples: 3 replica: 0
-utilization:0.0194936 throughput:0.00974681 replicas:1
-
-	 tuples generated:2 tuples processed:0 throughput topology:0 average tuple response time:inf total simulation time:307.793
+	 tuples generated:20 tuples processed:0 throughput topology:0 average tuple response time:inf total simulation time:92
 
 

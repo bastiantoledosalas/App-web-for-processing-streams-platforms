@@ -1,0 +1,13 @@
+#Node_Name   Type    Replication     Grouping   Processor   AvgServiceTime(STRING)   Arrival Rate(STRING)
+KafkaSpout                     S   1   0   10.0.0.2   fixed(0.0)                  spline(/home/bastian/simstream/simstream-main/configs/data/ArrivalTime.dat)
+#Node_Name   Type   Replication   Grouping   Processor   NbrOutputTweets   AvgServiceTime
+#NbrOutputTweets puede ser: fixed(nro) que retorna nro, o puede ser alguna distribucion discreta.
+#NbrOutputTweets debe ser una distribucion continua
+TwitterFilter                  B   5   0   10.0.0.2   spline(/home/bastian/simstream/simstream-main/configs/data/TwitterFilterTuples.dat)  spline(/home/bastian/simstream/simstream-main/configs/data/TwitterFilter.dat)
+TextSanitization               B   3   0   10.1.0.2   fixed(5)                    spline(/home/bastian/simstream/simstream-main/configs/data/TextSanitization.dat)
+SentimentAnalysis              B   4   0   10.0.0.2   fixed(5)                    spline(/home/bastian/simstream/simstream-main/configs/data/SentimentAnalysis.dat)
+SentimentAnalysisToCassandra   B   2   0   10.0.0.2   fixed(1)                    spline(/home/bastian/simstream/simstream-main/configs/data/SentimentAnalysisToCassandra.dat)
+HashtagSplitter                B   5   0   10.0.0.1   spline(/home/bastian/simstream/simstream-main/configs/data/HashtagSplitterTuples.dat)  spline(/home/bastian/simstream/simstream-main/configs/data/HashtagSplitter.dat)
+HashtagCounter                 B   2   0   10.0.0.1   fixed(5)                    spline(/home/bastian/simstream/simstream-main/configs/data/HashtagCounter.dat)
+TopHashtag                     B   2   0   10.0.0.2   fixed(5)                    spline(/home/bastian/simstream/simstream-main/configs/data/TopHashtag.dat)
+TopHashtagToCassandra          B   12   0   10.0.0.3   fixed(1)                    spline(/home/bastian/simstream/simstream-main/configs/data/TopHashtagToCassandra.dat)

@@ -51,6 +51,7 @@ export class ProcessingService {
       // Se lee el archivo de salida y se crea el objeto completo con los resultados
       const simulationResults   = await parseFile(outputfilePath);
 
+      console.log('Results',simulationResults.results);
       // Se envia el objeto results al httpClientService para enviarlo al servicio de simulacion
       await this.httpClientService.sendSimulationResults(_id, simulationResults.results);
       
